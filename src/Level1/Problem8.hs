@@ -8,11 +8,10 @@ import Problem
 
 problem8 :: Problem Integer
 problem8 =
-  Problem
-  {ind = 8, name = "Largest product in a series", solution = fromIntegral sol}
+  Problem {ind = 8, name = "Largest product in a series", solution = solver 13}
 
-sol :: Int
-sol = largestProductSequence theNumber 13
+solver :: Int -> Integer
+solver len = fromIntegral $ largestProductSequence theNumber len
 
 largestProductSequence :: [Char] -> Int -> Int
 largestProductSequence s len = lps' s len 0

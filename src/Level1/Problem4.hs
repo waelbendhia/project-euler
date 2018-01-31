@@ -7,15 +7,16 @@ import Problem
 
 problem4 :: Problem Integer
 problem4 =
-  Problem {ind = 4, name = "Largest palindrome product", solution = sol}
+  Problem {ind = 4, name = "Largest palindrome product", solution = solver 3}
 
-sol :: Integer
-sol = head $ dropWhile (not . isPalindrome . show) allFactors
+solver :: Int -> Integer
+solver digits = head $ dropWhile (not . isPalindrome . show) allFactors
   where
+    bound = (10 ^ digits) - 1
     isPalindrome x =
       if length x <= 1
         then True
         else last x == head x && isPalindrome (tail $ init x)
     allFactors =
       sortBy (flip compare) $
-      concatMap (\x -> map (* x) [100 .. x]) [100 .. 999]
+      concatMap (\x -> map (* x) [100 .. x]) [100 .. bound]

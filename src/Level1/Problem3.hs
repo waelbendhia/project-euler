@@ -5,10 +5,12 @@ module Problem3
 import Problem
 
 problem3 :: Problem Integer
-problem3 = Problem {ind = 3, name = "Largest prime factor", solution = sol}
+problem3 =
+  Problem
+  {ind = 3, name = "Largest prime factor", solution = solver 600851475143}
 
-sol :: Integer
-sol = firstPrime $ factors 600851475143
+solver :: Integer -> Integer
+solver x = firstPrime $ factors x
 
 factors :: Integer -> [Integer]
 factors n = map (quot n) filtered ++ reverse filtered

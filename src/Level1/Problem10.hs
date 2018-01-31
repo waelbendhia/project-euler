@@ -6,10 +6,10 @@ import Problem
 
 problem10 :: Problem Integer
 problem10 =
-  Problem {ind = 10, name = "Summation of primes", solution = fromIntegral sol}
+  Problem {ind = 10, name = "Summation of primes", solution = solver 2000000}
 
-sol :: Integer
-sol = sum $ takeWhile (< 2000000) $ primes
+solver :: Integer -> Integer
+solver max = sum $ takeWhile (< max) $ primes
 
 -- Credit for this goes to wwwater from stack overflow
 primes :: [Integer]

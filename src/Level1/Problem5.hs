@@ -7,16 +7,13 @@ module Problem5
 import Problem
 
 problem5 :: Problem Integer
-problem5 = Problem {ind = 5, name = "Smallest multiple", solution = sol}
+problem5 = Problem {ind = 5, name = "Smallest multiple", solution = solver 20}
 
-sol :: Integer
-sol = foldl (*) 1 $ foldl mustHaveAtLeast [] $ map factorize [1 .. 20]
+solver :: Integer -> Integer
+solver bound =
+  foldl (*) 1 $ foldl mustHaveAtLeast [] $ map factorize [1 .. bound]
 
-mustHaveAtLeast ::
-     forall a. Eq a
-  => [a]
-  -> [a]
-  -> [a]
+mustHaveAtLeast :: Eq a => [a] -> [a] -> [a]
 mustHaveAtLeast l [] = l
 mustHaveAtLeast [] b = b
 mustHaveAtLeast l (x:xs) =

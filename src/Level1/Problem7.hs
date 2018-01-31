@@ -5,10 +5,10 @@ module Problem7
 import Problem
 
 problem7 :: Problem Integer
-problem7 = Problem {ind = 7, name = "10001st prime", solution = sol}
+problem7 = Problem {ind = 7, name = "10001st prime", solution = solver 10001}
 
-sol :: Integer
-sol = primes !! 10000
+solver :: Int -> Integer
+solver n = primes !! (n - 1)
 
 -- Credit for this goes to wwwater from stack overflow
 primes :: [Integer]

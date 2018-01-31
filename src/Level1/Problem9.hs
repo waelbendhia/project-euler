@@ -7,12 +7,12 @@ import Problem
 problem9 :: Problem Integer
 problem9 =
   Problem
-  {ind = 9, name = "Special Pythagorean triplet", solution = fromIntegral sol}
+  {ind = 9, name = "Special Pythagorean triplet", solution = solver 1000}
 
-sol :: Integer
-sol = a * b * c
+solver :: Integer -> Integer
+solver t = a * b * c
   where
-    (a, b, c) = head $ filter (checkSum 1000) $ triplets 1000
+    (a, b, c) = head $ filter (checkSum t) $ triplets t
 
 pyth :: Integer -> Integer -> Integer
 pyth a b = wholeRoot (a ^ 2 + b ^ 2)

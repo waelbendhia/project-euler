@@ -5,7 +5,8 @@ module Problem1
 import Problem
 
 problem1 :: Problem Integer
-problem1 = Problem {ind = 1, name = "Multiples of 3 and 5", solution = sol}
+problem1 =
+  Problem {ind = 1, name = "Multiples of 3 and 5", solution = solver 1000}
 
-sol :: Integer
-sol = sum $ filter (\x -> rem x 3 == 0 || rem x 5 == 0) [1 .. 999]
+solver :: Integer -> Integer
+solver x = sum $ filter (\y -> rem y 3 == 0 || rem y 5 == 0) [1 .. (x - 1)]
