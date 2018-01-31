@@ -6,6 +6,8 @@ import qualified Problem.Level1.Problem1 as P1
 import qualified Problem.Level1.Problem10 as P10
 import qualified Problem.Level1.Problem11 as P11
 import qualified Problem.Level1.Problem12 as P12
+import qualified Problem.Level1.Problem13 as P13
+import qualified Problem.Level1.Problem14 as P14
 import qualified Problem.Level1.Problem2 as P2
 import qualified Problem.Level1.Problem3 as P3
 import qualified Problem.Level1.Problem4 as P4
@@ -30,6 +32,8 @@ level1Problems =
   , P10.problem
   , P11.problem
   , P12.problem
+  , P13.problem
+  , P14.problem
   ]
 
 getProblem :: Int -> Problem Integer
