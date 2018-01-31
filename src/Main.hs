@@ -2,6 +2,7 @@ module Main where
 
 import Problem
 import Problem1
+import Problem10
 import Problem2
 import Problem3
 import Problem4
@@ -27,6 +28,7 @@ main = do
          7 -> problem7
          8 -> problem8
          9 -> problem9
+         10 -> problem10
          _ -> Problem num "Not solved yet" 0)
   main
 
