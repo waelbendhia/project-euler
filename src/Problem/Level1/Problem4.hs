@@ -1,12 +1,12 @@
-module Problem4
-  ( problem4
+module Problem.Level1.Problem4
+  ( problem
   ) where
 
 import Data.List
-import Problem
+import Problem.Problem
 
-problem4 :: Problem Integer
-problem4 =
+problem :: Problem Integer
+problem =
   Problem {ind = 4, name = "Largest palindrome product", solution = solver 3}
 
 solver :: Int -> Integer

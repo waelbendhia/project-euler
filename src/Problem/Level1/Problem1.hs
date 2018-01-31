@@ -1,11 +1,11 @@
-module Problem1
-  ( problem1
+module Problem.Level1.Problem1
+  ( problem
   ) where
 
-import Problem
+import Problem.Problem
 
-problem1 :: Problem Integer
-problem1 =
+problem :: Problem Integer
+problem =
   Problem {ind = 1, name = "Multiples of 3 and 5", solution = solver 1000}
 
 solver :: Integer -> Integer

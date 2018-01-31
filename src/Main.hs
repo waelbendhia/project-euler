@@ -1,35 +1,13 @@
 module Main where
 
-import Problem
-import Problem1
-import Problem10
-import Problem2
-import Problem3
-import Problem4
-import Problem5
-import Problem6
-import Problem7
-import Problem8
-import Problem9
+import Problem.Problem
+import Problem.Solutions
 import Text.Read
 
 main :: IO ()
 main = do
   num <- promptInt "Select a problem"
-  putStrLn $
-    prettyPrint
-      (case num of
-         1 -> problem1
-         2 -> problem2
-         3 -> problem3
-         4 -> problem4
-         5 -> problem5
-         6 -> problem6
-         7 -> problem7
-         8 -> problem8
-         9 -> problem9
-         10 -> problem10
-         _ -> Problem num "Not solved yet" 0)
+  putStrLn $ prettyPrint $ getProblem num
   main
 
 always :: t1 -> t -> t1

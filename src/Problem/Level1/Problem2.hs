@@ -1,11 +1,11 @@
-module Problem2
-  ( problem2
+module Problem.Level1.Problem2
+  ( problem
   ) where
 
-import Problem
+import Problem.Problem
 
-problem2 :: Problem Integer
-problem2 =
+problem :: Problem Integer
+problem =
   Problem {ind = 2, name = "Even Fibonacci numbers", solution = solver 4000000}
 
 solver :: Integer -> Integer

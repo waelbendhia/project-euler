@@ -1,13 +1,13 @@
-module Problem8
-  ( problem8
+module Problem.Level1.Problem8
+  ( problem
   ) where
 
 import Data.Char
 
-import Problem
+import Problem.Problem
 
-problem8 :: Problem Integer
-problem8 =
+problem :: Problem Integer
+problem =
   Problem {ind = 8, name = "Largest product in a series", solution = solver 13}
 
 solver :: Int -> Integer

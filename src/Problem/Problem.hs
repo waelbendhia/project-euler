@@ -1,4 +1,4 @@
-module Problem
+module Problem.Problem
   ( Problem(..)
   , prettyPrint
   ) where

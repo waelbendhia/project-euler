@@ -1,11 +1,11 @@
-module Problem3
-  ( problem3
+module Problem.Level1.Problem3
+  ( problem
   ) where
 
-import Problem
+import Problem.Problem
 
-problem3 :: Problem Integer
-problem3 =
+problem :: Problem Integer
+problem =
   Problem
   {ind = 3, name = "Largest prime factor", solution = solver 600851475143}
 

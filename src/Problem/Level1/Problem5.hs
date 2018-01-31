@@ -1,13 +1,13 @@
 {-# LANGUAGE RankNTypes #-}
 
-module Problem5
-  ( problem5
+module Problem.Level1.Problem5
+  ( problem
   ) where
 
-import Problem
+import Problem.Problem
 
-problem5 :: Problem Integer
-problem5 = Problem {ind = 5, name = "Smallest multiple", solution = solver 20}
+problem :: Problem Integer
+problem = Problem {ind = 5, name = "Smallest multiple", solution = solver 20}
 
 solver :: Integer -> Integer
 solver bound =

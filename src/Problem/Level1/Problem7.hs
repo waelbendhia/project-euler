@@ -1,15 +1,14 @@
-module Problem10
-  ( problem10
+module Problem.Level1.Problem7
+  ( problem
   ) where
 
-import Problem
+import Problem.Problem
 
-problem10 :: Problem Integer
-problem10 =
-  Problem {ind = 10, name = "Summation of primes", solution = solver 2000000}
+problem :: Problem Integer
+problem = Problem {ind = 7, name = "10001st prime", solution = solver 10001}
 
-solver :: Integer -> Integer
-solver max = sum $ takeWhile (< max) $ primes
+solver :: Int -> Integer
+solver n = primes !! (n - 1)
 
 -- Credit for this goes to wwwater from stack overflow
 primes :: [Integer]

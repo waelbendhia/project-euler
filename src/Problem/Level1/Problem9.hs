@@ -1,11 +1,11 @@
-module Problem9
-  ( problem9
+module Problem.Level1.Problem9
+  ( problem
   ) where
 
-import Problem
+import Problem.Problem
 
-problem9 :: Problem Integer
-problem9 =
+problem :: Problem Integer
+problem =
   Problem
   {ind = 9, name = "Special Pythagorean triplet", solution = solver 1000}
 
