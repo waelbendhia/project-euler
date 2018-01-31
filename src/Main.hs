@@ -9,6 +9,7 @@ import Problem5
 import Problem6
 import Problem7
 import Problem8
+import Problem9
 import Text.Read
 
 main :: IO ()
@@ -25,6 +26,7 @@ main = do
          6 -> problem6
          7 -> problem7
          8 -> problem8
+         9 -> problem9
          _ -> Problem num "Not solved yet" 0)
   main
 
