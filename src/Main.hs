@@ -8,14 +8,14 @@ import Problem4
 import Problem5
 import Problem6
 import Problem7
+import Problem8
 import Text.Read
 
 main :: IO ()
 main = do
   num <- promptInt "Select a problem"
   putStrLn $
-    show $
-    solution
+    prettyPrint
       (case num of
          1 -> problem1
          2 -> problem2
@@ -24,8 +24,9 @@ main = do
          5 -> problem5
          6 -> problem6
          7 -> problem7
-         _ -> Problem 0 "Not solved yet" 0)
-  retry main
+         8 -> problem8
+         _ -> Problem num "Not solved yet" 0)
+  main
 
 always :: t1 -> t -> t1
 always a _ = a

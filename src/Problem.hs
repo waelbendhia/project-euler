@@ -9,5 +9,7 @@ data Problem a = Problem
   , solution :: a
   } deriving (Show)
 
-prettyPrint :: Problem a -> [Char]
-prettyPrint p = "Problem " ++ (show $ ind p) ++ ": " ++ (name p)
+prettyPrint :: Show a => Problem a -> [Char]
+prettyPrint p =
+  "Problem " ++
+  (show $ ind p) ++ ": " ++ (name p) ++ "\nAnswer: " ++ (show $ solution p)
