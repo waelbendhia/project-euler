@@ -1,7 +1,7 @@
 module Main where
 
-import Problem.Problem
-import Problem.Solutions
+import Problem
+import Solutions
 import Text.Read
 
 main :: IO ()
