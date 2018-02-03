@@ -2,12 +2,13 @@ module Main where
 
 import Problem
 import Solutions
+import System.TimeIt
 import Text.Read
 
 main :: IO ()
 main = do
   num <- promptInt "Select a problem"
-  putStrLn $ prettyPrint $ getProblem num
+  timeIt $ putStrLn $ prettyPrint $ getProblem num
   main
 
 always :: t1 -> t -> t1
