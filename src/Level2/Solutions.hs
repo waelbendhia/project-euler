@@ -17,6 +17,9 @@ import qualified Level2.Problem35 as P35
 import qualified Level2.Problem36 as P36
 import qualified Level2.Problem37 as P37
 import qualified Level2.Problem38 as P38
+import qualified Level2.Problem39 as P39
+import qualified Level2.Problem40 as P40
+import qualified Level2.Problem41 as P41
 
 solutions :: [Problem Integer]
 solutions =
@@ -33,4 +36,7 @@ solutions =
   , P36.problem
   , P37.problem
   , P38.problem
+  , P39.problem
+  , P40.problem
+  , P41.problem
   ]

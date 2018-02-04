@@ -2,8 +2,8 @@ module Level2.Problem37
   ( problem
   ) where
 
+import Data.Numbers.Primes
 import qualified Data.Set as S
-
 import Problem
 
 problem :: Problem Integer
@@ -38,21 +38,5 @@ truncsRight n
 numDigits :: Integer -> Integer
 numDigits = (+ 1) . truncate . logBase 10 . fromIntegral
 
-isPrime :: Integral t => t -> Bool
-isPrime a = a >= 2 && isPrime' 2
-  where
-    isPrime' x
-      | x > intSqrt a = True
-      | rem a x == 0 = False
-      | otherwise = isPrime' (x + 1)
-
 intSqrt :: (Integral a, Integral b) => a -> b
 intSqrt x = truncate $ sqrt $ (fromIntegral x :: Double)
-
-primes :: [Integer]
-primes = 2 : 3 : sieve (tail primes) [5,7 ..]
-  where
-    sieve (p:ps) candidates =
-      let (smallerSquareP, (_:biggerSquareP)) = span (< p * p) candidates
-      in smallerSquareP ++
-         sieve ps (filter ((/= 0) . (flip rem) p) biggerSquareP)

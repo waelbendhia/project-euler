@@ -2,6 +2,7 @@ module Level2.Problem35
   ( problem
   ) where
 
+import Data.Numbers.Primes
 import Problem
 
 problem :: Problem Integer
@@ -40,23 +41,3 @@ shift :: Int -> Int
 shift n = read $ last sn : init sn
   where
     sn = show n
-
-isPrime :: Int -> Bool
-isPrime a = isPrime' 2
-  where
-    isPrime' x
-      | x > intSqrt a = True
-      | rem a x == 0 = False
-      | otherwise = isPrime' (x + 1)
-
-intSqrt :: Int -> Int
-intSqrt x = truncate $ sqrt $ (fromIntegral x :: Double)
-
--- Credit for this goes to wwwater from stack overflow
-primes :: [Int]
-primes = 2 : 3 : calcNextPrimes (tail primes) [5,7 ..]
-  where
-    calcNextPrimes (p:ps) candidates =
-      let (smallerSquareP, (_:biggerSquareP)) = span (< p * p) candidates
-      in smallerSquareP ++
-         calcNextPrimes ps [c | c <- biggerSquareP, rem c p /= 0]
