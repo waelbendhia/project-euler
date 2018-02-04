@@ -49,7 +49,6 @@ isPrime a = a >= 2 && isPrime' 2
 intSqrt :: (Integral a, Integral b) => a -> b
 intSqrt x = truncate $ sqrt $ (fromIntegral x :: Double)
 
--- Credit for this goes to wwwater from stack overflow
 primes :: [Integer]
 primes = 2 : 3 : sieve (tail primes) [5,7 ..]
   where
