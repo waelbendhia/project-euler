@@ -17,6 +17,7 @@ problem =
 -- This solution is a bit verbose but it's late and I'm tired. Basically it's
 -- just a DFS where for each node a child as any number that belongs to a set
 -- from a set not yet expanded into which is cyclic with the parent node.
+solve :: [[Integer]]
 solve = do
   firstSet <- numbers
   firstNumber <- firstSet
@@ -50,56 +51,26 @@ solve = do
         (onlyNDigitNumbers 4)
         [triangles, squares, pentagons, hexagons, heptagons, octagons]
 
+cyclic :: Integral a => a -> a -> Bool
 cyclic a b = mod a 100 == div b 100
 
+triangles :: [Integer]
 triangles = map (\n -> (n ^ 2 + n) `div` 2) [1 ..]
 
+squares :: [Integer]
 squares = map (^ 2) [1 ..]
 
+pentagons :: [Integer]
 pentagons = map (\n -> (3 * n ^ 2 - n) `div` 2) [1 ..]
 
+hexagons :: [Integer]
 hexagons = map (\n -> 2 * n ^ 2 - n) [1 ..]
 
+heptagons :: [Integer]
 heptagons = map (\n -> (5 * n ^ 2 - 3 * n) `div` 2) [1 ..]
 
+octagons :: [Integer]
 octagons = map (\n -> 3 * n ^ 2 - 2 * n) [1 ..]
 
+onlyNDigitNumbers :: (Ord a, Num a, Integral b) => b -> [a] -> [a]
 onlyNDigitNumbers n = dropWhile (< 10 ^ (n - 1)) . takeWhile (< 10 ^ n)
-
-triangleTerm x =
-  listToMaybe $ filter (> 0) $ solveQuadrticEquation (1, 1, -2 * x)
-
-squareTerm = intSqrt
-
-pentagonalTerm x =
-  listToMaybe $ filter (> 0) $ solveQuadrticEquation (3, -1, -2 * x)
-
-hexagonTerm x = listToMaybe $ filter (> 0) $ solveQuadrticEquation (2, -1, -x)
-
-heptagonTerm x =
-  listToMaybe $ filter (> 0) $ solveQuadrticEquation (5, -3, -2 * x)
-
-octagonTerm x = listToMaybe $ filter (> 0) $ solveQuadrticEquation (3, -2, -x)
-
-solveQuadrticEquation (a, b, c) =
-  case disc of
-    Nothing -> []
-    Just d ->
-      maybeToList (safeDiv (-b + d) (2 * a)) ++
-      maybeToList (safeDiv (-b - d) (2 * a))
-  where
-    disc = intSqrt $ b ^ 2 - 4 * a * c
-
-intSqrt n =
-  if n < 0
-    then Nothing
-    else if root ^ 2 == n
-           then Just root
-           else Nothing
-  where
-    root = truncate $ sqrt $ fromIntegral n
-
-safeDiv a b =
-  if rem a b == 0
-    then Just $ div a b
-    else Nothing
