@@ -6,7 +6,9 @@ import Problem
 
 problem :: Problem Integer
 problem =
-  Problem {ind = 1, name = "Multiples of 3 and 5", solution = solver 1000}
+  Problem
+  {ind = 1, name = "Multiples of 3 and 5", solution = multiplesOf [3, 5] 1000}
 
-solver :: Integer -> Integer
-solver x = sum $ filter (\y -> rem y 3 == 0 || rem y 5 == 0) [1 .. (x - 1)]
+multiplesOf :: (Integral a, Foldable t) => t a -> a -> a
+multiplesOf l under =
+  sum $ filter (\y -> any (\x -> rem y x == 0) l) [1 .. under - 1]

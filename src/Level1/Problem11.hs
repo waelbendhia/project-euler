@@ -12,7 +12,7 @@ problem =
   {ind = 11, name = "Largest product in a grid", solution = solver 4 theMatrix}
 
 solver :: (Num b, Ord b) => Int -> Matrix b -> b
-solver s m = foldl max 0 $ map highestProductFrom $ allSubmatricesOfSize s m
+solver = ((foldl max 0 . map highestProductFrom) .) . allSubmatricesOfSize
 
 allSubmatricesOfSize :: Int -> Matrix a -> [Matrix a]
 allSubmatricesOfSize n m =

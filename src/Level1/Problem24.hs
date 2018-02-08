@@ -13,7 +13,7 @@ problem =
   }
 
 findNthPermutationIndexAt1 :: Eq a => Int -> [a] -> [a]
-findNthPermutationIndexAt1 n s = findNthPermutation (n - 1) s
+findNthPermutationIndexAt1 n = findNthPermutation (n - 1)
 
 findNthPermutation :: Eq a => Int -> [a] -> [a]
 findNthPermutation n s =

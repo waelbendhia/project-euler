@@ -7,10 +7,10 @@ import Problem
 problem :: Problem Integer
 problem =
   Problem
-  {ind = 3, name = "Largest prime factor", solution = solver 600851475143}
-
-solver :: Integer -> Integer
-solver x = firstPrime $ factors x
+  { ind = 3
+  , name = "Largest prime factor"
+  , solution = firstPrime $ factors 600851475143
+  }
 
 factors :: Integer -> [Integer]
 factors n = map (quot n) filtered ++ reverse filtered

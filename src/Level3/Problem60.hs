@@ -47,14 +47,12 @@ dfsPrimeSet len numPrimes = helper 0 0 primes'
                 else Just)
     primes' = 3 : (drop 3 $ take numPrimes primes)
 
-firstJust :: Foldable t => t (Maybe t1) -> Maybe t1
-firstJust =
-  foldl
-    (\p c ->
-       case p of
-         Nothing -> c
-         y -> y)
-    Nothing
+firstJust :: [Maybe a] -> Maybe a
+firstJust [] = Nothing
+firstJust (x:xs) =
+  case x of
+    Nothing -> firstJust xs
+    y -> y
 
 primePair :: (Show a1, Show a) => a1 -> a -> Bool
 primePair a b = isPrime (concatNum a b) && isPrime (concatNum b a)
