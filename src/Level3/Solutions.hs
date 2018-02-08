@@ -21,6 +21,10 @@ import qualified Level3.Problem64 as P64
 import qualified Level3.Problem65 as P65
 import qualified Level3.Problem66 as P66
 import qualified Level3.Problem67 as P67
+import qualified Level3.Problem68 as P68
+import qualified Level3.Problem69 as P69
+import qualified Level3.Problem70 as P70
+import qualified Level3.Problem71 as P71
 
 solutions :: [Problem Integer]
 solutions =
@@ -41,4 +45,8 @@ solutions =
   , P65.problem
   , P66.problem
   , P67.problem
+  , P68.problem
+  , P69.problem
+  , P70.problem
+  , P71.problem
   ]
