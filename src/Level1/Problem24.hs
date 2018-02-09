@@ -27,6 +27,4 @@ findNthPermutation n s =
     remainder = mod n step
 
 factorial :: Integral t => t -> t
-factorial n
-  | n <= 1 = 1
-  | otherwise = n * factorial (n - 1)
+factorial = product . enumFromTo 1

@@ -16,6 +16,5 @@ problem =
 factDigitSum :: Integer -> Int
 factDigitSum = sum . map digitToInt . show . factorial
 
-factorial :: (Eq t, Num t) => t -> t
-factorial 0 = 1
-factorial n = n * factorial (n - 1)
+factorial :: (Enum a, Num a) => a -> a
+factorial = product . enumFromTo 1

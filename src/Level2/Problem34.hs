@@ -30,7 +30,4 @@ digitSumFactorial :: Show a => a -> Int
 digitSumFactorial = sum . map (factorial . digitToInt) . show
 
 factorial :: Int -> Int
-factorial = (!!) allFactorials
-
-allFactorials :: [Int]
-allFactorials = 1 : scanl (*) 1 [2 ..]
+factorial = product . enumFromTo 1

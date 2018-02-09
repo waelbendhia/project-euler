@@ -25,9 +25,9 @@ invTotient :: (Integral a1, Fractional a) => a1 -> a
 invTotient n = fromIntegral n / fromIntegral (phi n)
 
 phi :: Integral b => b -> b
-phi n =
-  foldl (*) 1 $
-  map (\l@(p:_) -> p ^ (length l) - p ^ (length l - 1)) $ group $ primeFactors n
+phi = product . map f . group . primeFactors
+  where
+    f l@(p:_) = p ^ (length l) - p ^ (length l - 1)
 
 isPhiPermutation :: (Integral b, Show b) => b -> Bool
 isPhiPermutation a = shareDigits a (phi a)

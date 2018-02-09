@@ -25,6 +25,6 @@ invTotient n = fromIntegral n / fromIntegral (phi n)
 -- and if if n is a power of a prime p then phi(p^k) = p^k - p^(k-1) hence this
 -- function
 phi :: Integral b => b -> b
-phi n =
-  foldl (*) 1 $
-  map (\l@(p:_) -> p ^ (length l) - p ^ (length l - 1)) $ group $ primeFactors n
+phi = product . map f . group . primeFactors
+  where
+    f l@(p:_) = p ^ (length l) - p ^ (length l - 1)
