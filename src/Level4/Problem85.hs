@@ -8,7 +8,8 @@ import Problem
 
 problem :: Problem Integer
 problem =
-  Problem {ind = 85, name = "Monopoly odds", solution = findClosest 2000000}
+  Problem
+  {ind = 85, name = "Counting rectangles", solution = findClosest 2000000}
 
 findClosest :: Integral b => b -> b
 findClosest cRect =
