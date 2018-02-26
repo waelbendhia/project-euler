@@ -16,8 +16,12 @@ import qualified Level4.Problem86 as P86
 import qualified Level4.Problem87 as P87
 import qualified Level4.Problem88 as P88
 import qualified Level4.Problem89 as P89
+import qualified Level4.Problem90 as P90
+import qualified Level4.Problem91 as P91
 import qualified Level4.Problem92 as P92
+import qualified Level4.Problem96 as P96
 import qualified Level4.Problem97 as P97
+import qualified Level4.Problem99 as P99
 
 import Problem
 
@@ -37,6 +41,10 @@ solutions =
   , P87.problem
   , P88.problem
   , P89.problem
+  , P90.problem
+  , P91.problem
   , P92.problem
+  , P96.problem
   , P97.problem
+  , P99.problem
   ]
