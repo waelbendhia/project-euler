@@ -19,7 +19,8 @@ import qualified Level4.Problem89 as P89
 import qualified Level4.Problem90 as P90
 import qualified Level4.Problem91 as P91
 import qualified Level4.Problem92 as P92
-import qualified Level4.Problem96 as P96
+import qualified Level4.Problem93 as P93
+import qualified Level4.Problem94 as P94
 import qualified Level4.Problem97 as P97
 import qualified Level4.Problem99 as P99
 
@@ -44,7 +45,8 @@ solutions =
   , P90.problem
   , P91.problem
   , P92.problem
-  , P96.problem
+  , P93.problem
+  , P94.problem
   , P97.problem
   , P99.problem
   ]

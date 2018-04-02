@@ -16,18 +16,16 @@ import qualified Data.Vector as V
 --   {ind = 96, name = "Su Doku", solution = sum $ map solve $ map mPuzzle puzzles}
 mPuzzle = fromLists . initializePuzzle
 
-solve m =
-  if isSolved m
-    then read $
-         map (intToDigit . fromIntegral) $
-         concat $ take 3 $ V.toList $ getRow 1 m
-    else if doIteration m == m
-           then error $ "stuck:\n" ++ (show m)
-           else solve $ doIteration m
+solve m
+  | isSolved m =
+    read $
+    map (intToDigit . fromIntegral) $ concat $ take 3 $ V.toList $ getRow 1 m
+  | doIteration m == m = error $ "stuck:\n" ++ (show m)
+  | otherwise = solve $ doIteration m
 
 isSolved = V.all ((== 1) . length) . V.take 3 . getRow 1
 
-doIteration p = clearColumns $ clearRows p
+doIteration p = clearColumns $ clearRows $ clearBlocks p
 
 clearColumns p = foldl clearColumn p [1 .. 9]
 

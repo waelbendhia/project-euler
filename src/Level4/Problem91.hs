@@ -9,7 +9,7 @@ problem =
   Problem
   { ind = 91
   , name = "Right triangles with integer coordinates"
-  , solution = toInteger $ length $ trianglesInBound 50
+  , solution = toInteger $ length $ trianglesInBound (50 :: Integer)
   }
 
 -- This brute force algorithm was only meant to check further solutions but it
