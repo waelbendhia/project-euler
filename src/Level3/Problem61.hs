@@ -2,8 +2,6 @@ module Level3.Problem61
   ( problem
   ) where
 
-import Data.Maybe
-
 import Problem
 
 problem :: Problem Integer
