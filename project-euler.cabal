@@ -19,7 +19,7 @@ executable project-euler
   main-is:             Main.hs
   -- other-modules:       
   -- other-extensions:    
-  build-depends:       base >=4.9 && <4.10,
+  build-depends:       base,
                        matrix,
                        containers,
                        timeit,
