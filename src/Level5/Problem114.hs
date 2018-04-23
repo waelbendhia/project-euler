@@ -15,6 +15,7 @@ problem =
   , solution = possibleCombinations 50
   }
 
+possibleCombinations :: Integer -> Integer
 possibleCombinations maxUnits = r ! maxUnits
   where
     tiles = 1 : [3 .. maxUnits]
