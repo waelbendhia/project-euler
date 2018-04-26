@@ -163,5 +163,7 @@ executable project-euler
                        Level15.Solutions
                        Level16.Problem387
                        Level16.Solutions
+                       Level20.Problem493
+                       Level20.Solutions
                        Problem
                        Solutions
