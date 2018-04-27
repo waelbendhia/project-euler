@@ -7,6 +7,7 @@ import qualified Level15.Solutions as L15
 import qualified Level16.Solutions as L16
 import qualified Level2.Solutions as L2
 import qualified Level20.Solutions as L20
+import qualified Level22.Solutions as L22
 import qualified Level3.Solutions as L3
 import qualified Level4.Solutions as L4
 import qualified Level5.Solutions as L5
@@ -37,4 +38,5 @@ getProblem i =
         , L15.solutions
         , L16.solutions
         , L20.solutions
+        , L22.solutions
         ]

@@ -1,59 +1,85 @@
 module Level22.Problem549
-    --problem
-  (
+  ( problem
   ) where
 
-import Data.List
-import Data.Numbers.Primes
+import Control.Monad.ST
+import Data.Array
+import Data.Array.MArray
+import Data.Array.ST
+import Data.Foldable
+import Data.Numbers.Primes (primes)
 
--- import Problem
--- problem :: Problem Integer
--- problem = Problem {ind = 549, name = "Divisibility of factorials", solution = 0}
-capitalS n = sum $ map kempner [2 .. n]
+import Problem
 
--- -- So it turns out that this is called the Kempner function or the Smarandache
--- -- function
-s n = fst $ head $ filter ((== 0) . (`mod` n) . snd) factorials
+-- Okay, first how the fuck is this a 10% problem? 
+-- So it turns out that this is called the Kempner function or the Smarandache
+-- function we'll call it k. It turns out that k(p^e*a) = max(k(p^e), k(a))
+-- where p is a prime. Going off that I've build a dynamic programming 
+-- algorithm to solve all k under a given bound.
+-- For k(p^e) the solution is either p*e for e <= p or some other thing.
+-- You can find a better explanation by Googling Kempner function.
+-- The program takes 199.32s to solve and I'm probably missing some easy
+-- optimizations but I'm kind of over this problem.
+problem :: Problem Integer
+problem =
+  Problem
+  { ind = 549
+  , name = "Divisibility of factorials"
+  , solution = (subtract 1) $ sum $ kempners $ 10 ^ 6
+  }
 
--- kempner n
---   | n == 1 = 1
---   | isPrime n = n
---   | otherwise =
---     case group $ primeFactors n of
---       [x] ->
---         let p = head x
---             a = length x
---         in if a <= p
---              then a * p
---              else s n
---       l -> maximum $ map (\l' -> kempner $ head l' ^ length l') l
--- -- s n = sum $ last $ group $ primeFactors n
-factorials = zip [1 ..] $ scanl (*) 1 [2 ..]
+createPrimeLookup :: Integer -> ST s (STArray s Integer Bool)
+createPrimeLookup b = do
+  arr <- newArray (1, b + 4) False :: ST s (STArray s Integer Bool)
+  forM_ (takeWhile (< b) primes) $ flip (writeArray arr) True
+  return arr
 
--- factorial n = product [2 .. n]
-kempner n = helper $ primeFactors n
+kempners :: Integer -> Array Integer Integer
+kempners b = r
   where
-    helper l =
-      case l of
-        [] -> 0
-        p:xs ->
-          let e = (1 +) $ length $ takeWhile (== p) xs
-              rest = dropWhile (== p) xs
-          in max (sForPrimePower p e) $ helper rest
+    isPrime' = (lookup !)
+    lookup = runSTArray $ createPrimeLookup b
+    r = listArray (1, b) $ map k [1 .. b]
+    k n
+      | n == 1 = 1
+      | otherwise =
+        if p ^ e == n
+          then kempPrimePower p (fromIntegral e)
+          else max (r ! (p ^ e)) (r ! (n `div` p ^ e))
+      where
+        (p, e) = smallestPrimePower isPrime' n
 
-sForPrimePower p e = helper p e 0
-  where
-    helper p e k =
-      let k' = k + p
-          e' = e - p - 1
-      in if e > p
-           then let loop t
-                      | t `rem` p == 0 = loop (t `div` p) - 1
-                      | otherwise = 0
-                in helper p (e' - (loop $ k' `div` p)) k'
-           else (k + max 0 e) * p
+smallestPrimeFactor :: Integral a => (a -> Bool) -> a -> a
+smallestPrimeFactor isP n
+  | even n = 2
+  | isP n = n
+  | otherwise = head $ filter ((== 0) . (n `rem`)) $ tail primes
 
-compareKS b = filter (\(_, (x, y)) -> x /= y) $ zip [1 ..] $zip kemp ss
+smallestPrimePower :: (Integral a, Num b) => (a -> Bool) -> a -> (a, b)
+smallestPrimePower isP n = (spf, f (n `div` spf) 1)
   where
-    kemp = map kempner [1 .. b]
-    ss = map s [1 .. b]
+    spf = smallestPrimeFactor isP n
+    f r e
+      | r `rem` spf /= 0 = e
+      | otherwise = f (r `div` spf) (e + 1)
+
+kempPrimePower :: Integer -> Integer -> Integer
+kempPrimePower p e
+  | e <= p = p * e
+  | otherwise = (p - 1) * e + (sum $ ks (e `quot` a v) (v - 1) (e `rem` a v))
+  where
+    v = floor $ logBase (fromIntegral p) $ fromIntegral $ 1 + e * (p - 1)
+    a n = (p ^ n - 1) `quot` (p - 1)
+    ks k an r
+      | r == 0 = [k]
+      | otherwise = k : ks (r `quot` a an) (an - 1) (r `rem` a an)
+    imLog :: Integer -> Integer -> Integer
+    imLog b x =
+      if x < b
+        then 0
+        else let l = 2 * imLog (b * b) x
+                 doDiv x l =
+                   if x < b
+                     then l
+                     else doDiv (x `div` b) (l + 1)
+             in doDiv (x `div` (b ^ l)) l

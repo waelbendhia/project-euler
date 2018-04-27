@@ -17,6 +17,7 @@ cabal-version:       >=1.10
 
 executable project-euler
   main-is:             Main.hs
+  ghc-options:         -O2
   -- other-extensions:
   build-depends:       base,
                        matrix,
@@ -165,5 +166,7 @@ executable project-euler
                        Level16.Solutions
                        Level20.Problem493
                        Level20.Solutions
+                       Level22.Problem549
+                       Level22.Solutions
                        Problem
                        Solutions
