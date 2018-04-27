@@ -25,7 +25,7 @@ problem =
   Problem
   { ind = 549
   , name = "Divisibility of factorials"
-  , solution = (subtract 1) $ sum $ kempners $ 10 ^ 6
+  , solution = (subtract 1) $ sum $ kempners $ 10 ^ 8
   }
 
 createPrimeLookup :: Integer -> ST s (STArray s Integer Bool)
@@ -73,13 +73,3 @@ kempPrimePower p e
     ks k an r
       | r == 0 = [k]
       | otherwise = k : ks (r `quot` a an) (an - 1) (r `rem` a an)
-    imLog :: Integer -> Integer -> Integer
-    imLog b x =
-      if x < b
-        then 0
-        else let l = 2 * imLog (b * b) x
-                 doDiv x l =
-                   if x < b
-                     then l
-                     else doDiv (x `div` b) (l + 1)
-             in doDiv (x `div` (b ^ l)) l
