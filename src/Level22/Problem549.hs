@@ -37,8 +37,8 @@ createPrimeLookup b = do
 kempners :: Integer -> Array Integer Integer
 kempners b = r
   where
-    isPrime' = (lookup !)
-    lookup = runSTArray $ createPrimeLookup b
+    isPrime' = (luTable !)
+    luTable = runSTArray $ createPrimeLookup b
     r = listArray (1, b) $ map k [1 .. b]
     k n
       | n == 1 = 1
