@@ -25,7 +25,7 @@ problem =
   Problem
   { ind = 549
   , name = "Divisibility of factorials"
-  , solution = (subtract 1) $ sum $ kempners $ 10 ^ 8
+  , solution = subtract 1 $ sum $ kempners $ 10 ^ 8
   }
 
 createPrimeLookup :: Integer -> ST s (STArray s Integer Bool)

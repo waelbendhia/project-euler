@@ -3,6 +3,8 @@ module Solutions
   ) where
 
 import qualified Level1.Solutions as L1
+import qualified Level13.Solutions as L13
+import qualified Level14.Solutions as L14
 import qualified Level15.Solutions as L15
 import qualified Level16.Solutions as L16
 import qualified Level2.Solutions as L2
@@ -35,6 +37,8 @@ getProblem i =
         , L6.solutions
         , L7.solutions
         , L9.solutions
+        , L13.solutions
+        , L14.solutions
         , L15.solutions
         , L16.solutions
         , L20.solutions

@@ -30,6 +30,14 @@ executable project-euler
   hs-source-dirs:      src
   default-language:    Haskell2010
   other-modules:       Level1.Problem1
+                       Level1.Problem2
+                       Level1.Problem3
+                       Level1.Problem4
+                       Level1.Problem5
+                       Level1.Problem6
+                       Level1.Problem7
+                       Level1.Problem8
+                       Level1.Problem9
                        Level1.Problem10
                        Level1.Problem11
                        Level1.Problem12
@@ -40,7 +48,6 @@ executable project-euler
                        Level1.Problem17
                        Level1.Problem18
                        Level1.Problem19
-                       Level1.Problem2
                        Level1.Problem20
                        Level1.Problem21
                        Level1.Problem22
@@ -48,13 +55,6 @@ executable project-euler
                        Level1.Problem23
                        Level1.Problem24
                        Level1.Problem25
-                       Level1.Problem3
-                       Level1.Problem4
-                       Level1.Problem5
-                       Level1.Problem6
-                       Level1.Problem7
-                       Level1.Problem8
-                       Level1.Problem9
                        Level1.Solutions
                        Level2.Problem26
                        Level2.Problem27
@@ -160,6 +160,10 @@ executable project-euler
                        Level9.Problem205
                        Level9.Problem206
                        Level9.Solutions
+                       Level13.Problem301
+                       Level13.Solutions
+                       Level14.Problem346
+                       Level14.Solutions
                        Level15.Problem357
                        Level15.Solutions
                        Level16.Problem387

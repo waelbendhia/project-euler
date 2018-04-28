@@ -12,7 +12,7 @@ import Data.Numbers.Primes (primes)
 import Problem
 
 -- Algorithm is trivial, runs in 43 seconds but it's my first time using the ST
--- Monad! So yay. Also apparent
+-- Monad! So yay.
 problem :: Problem Integer
 problem =
   Problem
@@ -24,7 +24,7 @@ problem =
 createPrimeLookup :: Integer -> ST s (STArray s Integer Bool)
 createPrimeLookup b = do
   arr <- newArray (1, b + 4) False :: ST s (STArray s Integer Bool)
-  forM_ (takeWhile (< b) primes) $ \p -> writeArray arr p True
+  forM_ (takeWhile (< b) primes) $ flip (writeArray arr) True
   return arr
 
 pgiUnder :: Integer -> [Integer]
