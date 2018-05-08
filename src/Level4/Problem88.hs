@@ -18,7 +18,7 @@ problem =
 -- factor we could have is k however in that case the next biggest factor can
 -- only be 2 as in any other case the sum will always be inferior to the
 -- product of the set. So we end up with
---  k =< minProdSum(k) <= k*2.
+--  k <= minProdSum(k) <= k*2.
 -- This was a problem that caused me quite a bit of trouble since my first
 -- approach was to find a way to determine the MPS for a given k then sum them
 -- all up. Until I realized that trying find all factorizations for a certain

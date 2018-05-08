@@ -1,5 +1,6 @@
 module Main where
 
+import Data.Maybe
 import Problem
 import Solutions
 import System.TimeIt
@@ -21,8 +22,6 @@ promptLine :: String -> IO String
 promptLine prompt = putStrLn prompt >>= always getLine
 
 promptInt :: String -> IO Int
-promptInt prompt = do
-  ln <- promptLine prompt
-  case readMaybe ln of
-    Just x -> return x
-    Nothing -> retry $ promptInt prompt
+promptInt prompt =
+  promptLine prompt >>=
+  fromMaybe (retry $ promptInt prompt) . fmap return . readMaybe

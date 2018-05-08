@@ -2,6 +2,7 @@ module Level3.Problem60
   ( problem
   ) where
 
+import Data.Maybe
 import Data.Numbers.Primes
 
 import Problem
@@ -11,10 +12,7 @@ problem =
   Problem
   { ind = 60
   , name = "Prime pair sets"
-  , solution =
-      case dfsPrimeSet 5 1051 of
-        Nothing -> 0
-        Just l -> toInteger $ sum l
+  , solution = fromMaybe 0 $ fmap (toInteger . sum) $ dfsPrimeSet 5 1051
   }
 
 -- We run a DFS with progressive deepening of the number of primes we are going
@@ -26,9 +24,7 @@ getFirstPrimeSetOf :: (Integral a, Show a) => Int -> ([a], Int)
 getFirstPrimeSetOf len = helper len
   where
     helper b =
-      case dfsPrimeSet len b of
-        Just l -> (l, b)
-        Nothing -> helper (b + 1)
+      fromMaybe (helper (b + 1)) $ fmap (flip (,) b) $ dfsPrimeSet len b
 
 dfsPrimeSet :: (Eq t, Integral a, Num t, Show a) => t -> Int -> Maybe [a]
 dfsPrimeSet len numPrimes = helper 0 0 primes'

@@ -3,6 +3,7 @@ module Level9.Problem206
   ) where
 
 import Data.List
+import Data.Maybe
 
 import Problem
 
@@ -12,9 +13,7 @@ problem =
   { ind = 206
   , name = "Concealed Square"
   , solution =
-      case findSquareForShape "1_2_3_4_5_6_7_8_9_0" of
-        Nothing -> 0
-        Just x -> wholeRoot x
+      fromMaybe 0 $ fmap wholeRoot $ findSquareForShape "1_2_3_4_5_6_7_8_9_0"
   }
 
 findSquareForShape :: [Char] -> Maybe Integer

@@ -2,6 +2,7 @@ module Level4.Problem87
   ( problem
   ) where
 
+import Data.Maybe
 import Data.Numbers.Primes
 import qualified Data.Set as S
 import qualified Data.Vector as V
@@ -53,12 +54,7 @@ skip b i = i + (b - i `mod` b)
 
 unfoldS :: Ord a => (t -> Maybe (Maybe a, t)) -> S.Set a -> t -> S.Set a
 unfoldS f s i =
-  case f i of
-    Nothing -> s
-    Just (x, nextI) ->
-      unfoldS
-        f
-        (case x of
-           Nothing -> s
-           Just x' -> S.insert x' s)
-        nextI
+  fromMaybe s $
+  fmap
+    (\(x, nextI) -> unfoldS f (fromMaybe s $ fmap (flip S.insert s) $ x) nextI) $
+  f i

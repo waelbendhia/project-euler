@@ -20,7 +20,7 @@ generateRepUnits b = map (+ 1) $ scanl (+) 0 $ map (b ^) [1 ..]
 strongRepUnits :: Integer -> Set Integer
 strongRepUnits lim =
   fromList $
-  ([2 .. intSqrt lim] >>= takeWhile (< lim) . drop 2 . generateRepUnits)
+  [2 .. intSqrt lim] >>= takeWhile (< lim) . drop 2 . generateRepUnits
 
 intSqrt :: Integer -> Integer
 intSqrt = truncate . sqrt . fromIntegral

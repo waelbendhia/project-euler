@@ -2,6 +2,8 @@ module Level3.Problem64
   ( problem
   ) where
 
+import Data.Maybe
+
 import Problem
 
 problem :: Problem Integer
@@ -28,10 +30,7 @@ fractionalExpansion x =
         then l
         else helper (newTerm : l) stopCondition
       where
-        stopCondition =
-          case first of
-            Nothing -> Just (mn, dn)
-            z -> z
+        stopCondition = Just $ fromMaybe (mn, dn) first
         newTerm = (mn, dn, an)
         mn = (d * a) - m
         dn = (x - mn * mn) `div` d

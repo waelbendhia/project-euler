@@ -3,6 +3,7 @@ module Level3.Problem62
   ) where
 
 import Data.List
+import Data.Maybe
 
 import Problem
 
@@ -11,10 +12,7 @@ problem =
   Problem
   { ind = 62
   , name = "Cubic permutations"
-  , solution =
-      case findCubicPermutationsOfLength 5 of
-        Just l -> head l
-        Nothing -> 0
+  , solution = fromMaybe 0 $ fmap head $ findCubicPermutationsOfLength 5
   }
 
 findCubicPermutationsOfLength :: Int -> Maybe [Integer]

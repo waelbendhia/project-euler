@@ -4,6 +4,7 @@ module Level3.Problem54
 
 import Data.Char
 import Data.List
+import Data.Maybe
 
 import Level3.Problem54Games
 import Problem
@@ -117,10 +118,7 @@ flatten5 f l = f (l !! 0) (l !! 1) (l !! 2) (l !! 3) (l !! 4)
 
 apply :: t1 -> [t -> Maybe t1] -> t -> t1
 apply def [] _ = def
-apply def (f:fs) v =
-  case f v of
-    Just x -> x
-    Nothing -> apply def fs v
+apply def (f:fs) v = fromMaybe (apply def fs v) $ f v
 
 evaluateHand :: [Card] -> Hand
 evaluateHand cards
@@ -257,9 +255,8 @@ parseSuit _ = Nothing
 
 parseCard :: [Char] -> Card
 parseCard (c@[c1, c2]) =
-  case parseFace c1 >>= \f -> parseSuit c2 >>= \s -> Just $ Card f s of
-    Just x -> x
-    _ -> error ("Could not parse " ++ c)
+  fromMaybe (error ("Could not parse " ++ c)) $
+  parseFace c1 >>= \f -> parseSuit c2 >>= Just . Card f
 parseCard c = error ("Could not parse " ++ c)
 
 parseHand :: String -> [Card]

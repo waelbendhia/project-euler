@@ -4,6 +4,7 @@ module Level4.Problem82
 
 import Data.Array
 import Data.List
+import Data.Maybe
 
 import Level4.Problem82Matrix
 import Problem
