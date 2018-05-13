@@ -1,17 +1,12 @@
-{-# LANGUAGE FlexibleContexts #-}
-
 module Level14.Problem345
   ( problem
   ) where
 
 import Control.Monad
 import Control.Monad.LPMonad
-import Data.Array
-import Data.Bits
 import Data.LinearProgram.Common
 import Data.LinearProgram.GLPK
 import Data.List
-import Data.Map
 import Data.Maybe
 import System.IO.Silently
 import System.IO.Unsafe
@@ -28,8 +23,8 @@ import Problem
 -- Maximize the sum of xij multiplied by its value M ! i ! j
 -- Constraints are
 -- xij >= 0
--- sum of xi_ is 1 for each i == 1
--- sum of xj_ is 1 for each j == 1
+-- for all j sum of xij is 1 for each i == 1
+-- for all i sum of xij is 1 for each j == 1
 -- This satisfies all the constraints of the problem
 problem :: Problem Integer
 problem =
@@ -45,32 +40,25 @@ indexMatrix m = uncurry indexLine <$> addI m
 matrixToObjectiveFunction :: Additive r => [[r]] -> LinFunc [Char] r
 matrixToObjectiveFunction = linCombination . concat . indexMatrix
 
-linearConstraintsFromMatrix m =
-  flip forM_ (flip leqTo 1) $ linCombination <$> indexedM ++ transpose indexedM
-  where
-    indexedM = fmap (\(_, s) -> (1, s)) <$> indexMatrix m
-
-varConstrainsFromMatrix m = forM_ (indexMatrix m >>= fmap snd) (flip varGeq 0)
-
-varKindsFromMatrix m =
-  forM_ (indexMatrix m >>= fmap snd) (flip setVarKind IntVar)
-
-linProbFromMatrix :: (Ord c, Group c, Num c) => [[c]] -> LP [Char] c
-linProbFromMatrix m =
+linearProbFromMatrix :: (Ord c, Group c, Num c) => [[c]] -> LP [Char] c
+linearProbFromMatrix m =
   execLPM $ do
     setDirection Max
-    setObjective $ matrixToObjectiveFunction m
-    linearConstraintsFromMatrix m
-    varConstrainsFromMatrix m
-    varKindsFromMatrix m
+    let indexedM = indexMatrix m
+    setObjective $ linCombination $ concat $ indexedM
+    forM_ (indexedM >>= fmap snd) (flip varGeq 0)
+    forM_ (indexedM >>= fmap snd) (flip setVarKind IntVar)
+    let constrainedM = fmap (((,) 1) . snd) <$> indexedM
+    forM_
+      (linCombination <$> constrainedM ++ transpose constrainedM)
+      (flip leqTo 1)
 
 solveMatrix :: (Prelude.Integral p, Group c, Real c) => [[c]] -> p
-solveMatrix m = fromMaybe 0 max
-  where
-    max = truncate <$> (\(a, _, _c) -> a) <$> solution
-    solution =
-      snd $
-      unsafePerformIO $ silence $ glpSolveAll mipDefaults $ linProbFromMatrix m
+solveMatrix m =
+  fromMaybe 0 $
+  (truncate . fst) <$>
+  (snd $
+   unsafePerformIO $ silence $ glpSolveVars mipDefaults $ linearProbFromMatrix m)
 
 problemMatrix :: [[Integer]]
 problemMatrix =
