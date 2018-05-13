@@ -21,8 +21,16 @@ import Problem
 -- Algorithm is basically compose a linear program describing the matrix and
 -- solve it using GLPK. Easy-peasy.
 -- On a whole I like this program because I get to use something I learned from
--- school and I do monad things which I don't quite understand. Also it prints
--- things to 
+-- school and I get to do monad things and unsafe IO.
+-- Anyway the integer linear program is:
+-- Each cell is its own var xij where i is the column index and j is the row
+-- index
+-- Maximize the sum of xij multiplied by its value M ! i ! j
+-- Constraints are
+-- xij >= 0
+-- sum of xi_ is 1 for each i == 1
+-- sum of xj_ is 1 for each j == 1
+-- This satisfies all the constraints of the problem
 problem :: Problem Integer
 problem =
   Problem {ind = 345, name = "Matrix Sum", solution = solveMatrix problemMatrix}
