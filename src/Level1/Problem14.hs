@@ -8,10 +8,10 @@ import Problem
 problem :: Problem Integer
 problem =
   Problem
-  { ind = 14
-  , name = "Longest Collatz sequence"
-  , solution = fromIntegral $ solver 1000000
-  }
+    { ind = 14
+    , name = "Longest Collatz sequence"
+    , solution = fromIntegral $ solver 1000000
+    }
 
 solver :: Int -> Int
 solver bound = fst $ highestUnder bound

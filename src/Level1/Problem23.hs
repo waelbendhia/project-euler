@@ -8,10 +8,10 @@ import Problem
 problem :: Problem Integer
 problem =
   Problem
-  { ind = 23
-  , name = "Non-abundant sums"
-  , solution = sumOfAllNonAbundantSumNumbers
-  }
+    { ind = 23
+    , name = "Non-abundant sums"
+    , solution = sumOfAllNonAbundantSumNumbers
+    }
 
 sumOfAllNonAbundantSumNumbers :: Integer
 sumOfAllNonAbundantSumNumbers =

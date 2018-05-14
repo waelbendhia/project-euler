@@ -54,11 +54,11 @@ linearProbFromMatrix m =
       (flip leqTo 1)
 
 solveMatrix :: (Prelude.Integral p, Group c, Real c) => [[c]] -> p
-solveMatrix m =
-  fromMaybe 0 $
-  (truncate . fst) <$>
-  (snd $
-   unsafePerformIO $ silence $ glpSolveVars mipDefaults $ linearProbFromMatrix m)
+solveMatrix =
+  fromMaybe 0 .
+  fmap (truncate . fst) .
+  snd .
+  unsafePerformIO . silence . glpSolveVars mipDefaults . linearProbFromMatrix
 
 problemMatrix :: [[Integer]]
 problemMatrix =
