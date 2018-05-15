@@ -27,42 +27,39 @@ import Problem
 -- I'm sure of this).
 -- So for each step the factor is going to be the minimum of the next prime or
 -- one of the existing primes raised to k+1 exponent.
+-- The final algorithm goes like this:
+-- We keep a sorted queue of potential factors initialized with 2^1 and a queue
+-- of prime numbers
+-- For each iteration take the first value in the queue and multiply our current
+-- number by it then insert it doubling its exponent. If the selected factor is
+-- equal to the head of the primes queue then remove the head and insert the
+-- next prime in the factor queue.
+-- We keep doing this until we our desired number of factors.
+-- The current algorithm runs in about 24s which is under the limit. A lot of
+-- time is lost insert values into our sorted queue since it runs in linear
+-- time. Worst case the algorithm runs in O(n^2) time.
 problem :: Problem Integer
-problem = Problem 500 "Problem 500!" (solve 500500)
-
-solveNumberOfFactors2Exp n = f 0 1 [] primes
-  where
-    f numFactors val factors (p:ps)
-      | numFactors == n = val
-      | otherwise =
-        f
-          (numFactors + 1)
-          ((val * (fst candidate ^ snd candidate)) `mod` 500500507)
-          (insertF candidate factors)
-          (if p == fst candidate
-             then ps
-             else p : ps)
-      where
-        candidate =
-          minimumBy (\a b -> compare (fst a ^ snd a) (fst b ^ snd b)) $
-          (p, 1) : fmap (\(p', exp) -> (p', exp + 1)) factors
-
-insertF :: (Num b, Eq a) => (a, b) -> [(a, b)] -> [(a, b)]
-insertF x [] = [x]
-insertF (p, exp) ((p', exp'):ps)
-  | p == p' = (p, exp + exp') : ps
-  | otherwise = (p', exp') : insertF (p, exp) ps
+problem = Problem 500 "Problem 500!" (solveNumberOfFactors2Exp 500500)
 
 insertSorted x [] = [x]
 insertSorted x (p:ps)
   | uncurry (^) p < uncurry (^) x = p : insertSorted x ps
   | otherwise = x : p : ps
 
-solve target = f 0 1 $ take target $ zip primes $ repeat 1
+solveNumberOfFactors2Exp :: (Num p, Eq p, Integral a) => p -> a
+solveNumberOfFactors2Exp target = f 0 1 [(2, 1)] primes
   where
-    f n cur ((next, exp):queue)
+    f n cur ((next, exp):queue) (p1:p2:ps)
       | n == target = cur
-      | otherwise = f (n + 1) nextVal nextQueue
+      | otherwise = f (n + 1) nextVal nextQueue nextPs
       where
         nextVal = (cur * next ^ exp) `mod` 500500507
-        nextQueue = insertSorted (next, 2 * exp) queue
+        nextPs =
+          if next == p1
+            then p2 : ps
+            else p1 : p2 : ps
+        nextQueue =
+          (if next == p1
+             then insertSorted (p2, 1)
+             else id) $
+          insertSorted (next, 2 * exp) queue
