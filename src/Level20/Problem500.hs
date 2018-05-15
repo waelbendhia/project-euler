@@ -28,9 +28,8 @@ import Problem
 -- So for each step the factor is going to be the minimum of the next prime or
 -- one of the existing primes raised to k+1 exponent.
 problem :: Problem Integer
-problem = Problem 500 "Problem 500!" (solveNumberOfFactors2Exp 5005)
+problem = Problem 500 "Problem 500!" (solve 500500)
 
-solveNumberOfFactors2Exp :: (Eq p, Num p, Integral a) => p -> a
 solveNumberOfFactors2Exp n = f 0 1 [] primes
   where
     f numFactors val factors (p:ps)
@@ -48,7 +47,22 @@ solveNumberOfFactors2Exp n = f 0 1 [] primes
           minimumBy (\a b -> compare (fst a ^ snd a) (fst b ^ snd b)) $
           (p, 1) : fmap (\(p', exp) -> (p', exp + 1)) factors
 
+insertF :: (Num b, Eq a) => (a, b) -> [(a, b)] -> [(a, b)]
 insertF x [] = [x]
 insertF (p, exp) ((p', exp'):ps)
   | p == p' = (p, exp + exp') : ps
   | otherwise = (p', exp') : insertF (p, exp) ps
+
+insertSorted x [] = [x]
+insertSorted x (p:ps)
+  | uncurry (^) p < uncurry (^) x = p : insertSorted x ps
+  | otherwise = x : p : ps
+
+solve target = f 0 1 $ take target $ zip primes $ repeat 1
+  where
+    f n cur ((next, exp):queue)
+      | n == target = cur
+      | otherwise = f (n + 1) nextVal nextQueue
+      where
+        nextVal = (cur * next ^ exp) `mod` 500500507
+        nextQueue = insertSorted (next, 2 * exp) queue
