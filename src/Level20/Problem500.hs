@@ -2,7 +2,6 @@ module Level20.Problem500
   ( problem
   ) where
 
-import Data.IntMap
 import Data.List
 import Data.Numbers.Primes
 import Problem
