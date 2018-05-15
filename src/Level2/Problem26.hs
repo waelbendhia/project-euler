@@ -5,12 +5,7 @@ module Level2.Problem26
 import Problem
 
 problem :: Problem Integer
-problem =
-  Problem
-  { ind = 26
-  , name = "Reciprocal cycles"
-  , solution = toInteger $ longestCycleLenUnder 1000
-  }
+problem = Problem 26 "Reciprocal cycles" (toInteger $ longestCycleLenUnder 1000)
 
 longestCycleLenUnder :: Int -> Int
 longestCycleLenUnder n =

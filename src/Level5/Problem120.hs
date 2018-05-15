@@ -29,7 +29,6 @@ import Problem
 problem :: Problem Integer
 problem =
   Problem
-  { ind = 120
-  , name = "Square remainders"
-  , solution = sum $ map (\a -> 2 * a * ((a - 1) `div` 2)) [3 .. 1000]
-  }
+    120
+    "Square remainders"
+    (sum $ map (\a -> 2 * a * ((a - 1) `div` 2)) [3 .. 1000])

@@ -7,11 +7,9 @@ import Problem
 problem :: Problem Integer
 problem =
   Problem
-  { ind = 43
-  , name = "Sub-string divisibility"
-  , solution =
-      sum $ map read $ pandigitalWithValidation "" $ map show [9,8 .. 0]
-  }
+    43
+    "Sub-string divisibility"
+    (sum $ map read $ pandigitalWithValidation "" $ map show [9,8 .. 0])
 
 pandigitalWithValidation :: [Char] -> [[Char]] -> [[Char]]
 pandigitalWithValidation x l

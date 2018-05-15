@@ -9,10 +9,9 @@ import Problem
 problem :: Problem Integer
 problem =
   Problem
-  { ind = 30
-  , name = "Digit fifth powers"
-  , solution = fromIntegral $sum $ findMatchingSumOfDigitPowers 5
-  }
+    30
+    "Digit fifth powers"
+    (fromIntegral $sum $ findMatchingSumOfDigitPowers 5)
 
 findMatchingSumOfDigitPowers :: Integral b => b -> [Int]
 findMatchingSumOfDigitPowers p =

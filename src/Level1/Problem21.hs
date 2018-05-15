@@ -5,12 +5,7 @@ module Level1.Problem21
 import Problem
 
 problem :: Problem Integer
-problem =
-  Problem
-  { ind = 21
-  , name = "Amicable numbers"
-  , solution = sumAllAmicableNumbersUnder 10000
-  }
+problem = Problem 21 "Amicable numbers" (sumAllAmicableNumbersUnder 10000)
 
 sumAllAmicableNumbersUnder :: Integer -> Integer
 sumAllAmicableNumbersUnder x = sum $ filter isAmicable [1 .. x]

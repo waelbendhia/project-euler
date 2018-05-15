@@ -5,12 +5,7 @@ module Level20.Problem493
 import Problem
 
 problem :: Problem Integer
-problem =
-  Problem
-  { ind = 493
-  , name = "Under The Rainbow"
-  , solution = round $ (* 10 ^ 9) $ solve 7 10 20
-  }
+problem = Problem 493 "Under The Rainbow" (round $ (* 10 ^ 9) $ solve 7 10 20)
 
 solve :: Fractional b => Integer -> Integer -> Integer -> b
 solve numColors ballsPerColor n =
@@ -26,7 +21,7 @@ solve numColors ballsPerColor n =
       pickedP = 1 - notPickedP
       -- Multiply by number of colors and we get the expected number of
       -- distinct colors.
-  in (fromIntegral numColors) * pickedP
+   in (fromIntegral numColors) * pickedP
 
 binomialCoefficient :: Integer -> Integer -> Integer
 binomialCoefficient n k = (product $ map f [1 .. k]) `quot` (product [1 .. k])

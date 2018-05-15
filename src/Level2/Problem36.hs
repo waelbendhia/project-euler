@@ -8,10 +8,9 @@ import Problem
 problem :: Problem Integer
 problem =
   Problem
-  { ind = 36
-  , name = "Double-base palindromes"
-  , solution = toInteger $ sum $ doubleBasePalindromicUnder 1000000
-  }
+    36
+    "Double-base palindromes"
+    (toInteger $ sum $ doubleBasePalindromicUnder 1000000)
 
 doubleBasePalindromicUnder :: Int -> [Int]
 doubleBasePalindromicUnder n =

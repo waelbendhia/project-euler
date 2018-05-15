@@ -10,12 +10,7 @@ import qualified Data.Vector as V
 import Problem
 
 problem :: Problem Integer
-problem =
-  Problem
-  { ind = 50
-  , name = "Consecutive prime sum"
-  , solution = longestPrimeSumUnder 1000000
-  }
+problem = Problem 50 "Consecutive prime sum" (longestPrimeSumUnder 1000000)
 
 longestPrimeSumUnder :: Integral t => t -> t
 longestPrimeSumUnder n =

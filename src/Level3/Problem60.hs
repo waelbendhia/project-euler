@@ -10,10 +10,9 @@ import Problem
 problem :: Problem Integer
 problem =
   Problem
-  { ind = 60
-  , name = "Prime pair sets"
-  , solution = fromMaybe 0 $ fmap (toInteger . sum) $ dfsPrimeSet 5 1051
-  }
+    60
+    "Prime pair sets"
+    (fromMaybe 0 $ fmap (toInteger . sum) $ dfsPrimeSet 5 1051)
 
 -- We run a DFS with progressive deepening of the number of primes we are going
 -- to evaluate for prime sets. This algorithm takes a while to complete, but

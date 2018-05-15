@@ -5,12 +5,7 @@ module Level2.Problem28
 import Problem
 
 problem :: Problem Integer
-problem =
-  Problem
-  { ind = 28
-  , name = "Number spiral diagonals"
-  , solution = sum $ spiralDiagonals 1001
-  }
+problem = Problem 28 "Number spiral diagonals" (sum $ spiralDiagonals 1001)
 
 spiralDiagonals :: Integer -> [Integer]
 spiralDiagonals n = spiralDiag [1]

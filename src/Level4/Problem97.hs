@@ -6,11 +6,7 @@ import Problem
 
 problem :: Problem Integer
 problem =
-  Problem
-  { ind = 97
-  , name = "Large non-Mersenne prime"
-  , solution = largeNonMersennePrime `mod` 10 ^ 10
-  }
+  Problem 97 "Large non-Mersenne prime" (largeNonMersennePrime `mod` 10 ^ 10)
 
 largeNonMersennePrime :: Integer
 largeNonMersennePrime = 28433 * (2 ^ 7830457) + 1

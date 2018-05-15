@@ -10,11 +10,9 @@ import Problem
 problem :: Problem Integer
 problem =
   Problem
-  { ind = 77
-  , name = "Prime summations"
-  , solution =
-      toInteger $ head $ dropWhile ((< 5000) . primeSummationsFor) [1 ..]
-  }
+    77
+    "Prime summations"
+    (toInteger $ head $ dropWhile ((< 5000) . primeSummationsFor) [1 ..])
 
 -- This problem resembles problem 76 except it's primes instead of integers
 primeSummationsFor :: Num a => Int -> a

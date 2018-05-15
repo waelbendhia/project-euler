@@ -6,11 +6,7 @@ import Problem
 
 problem :: Problem Integer
 problem =
-  Problem
-  { ind = 25
-  , name = "1000-digit Fibonacci number"
-  , solution = toInteger $ firstFibOfLength 1000
-  }
+  Problem 25 "1000-digit Fibonacci number" (toInteger $ firstFibOfLength 1000)
 
 firstFibOfLength :: Int -> Int
 firstFibOfLength n =

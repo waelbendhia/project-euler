@@ -9,12 +9,7 @@ import Level4.Problem81Matrix
 import Problem
 
 problem :: Problem Integer
-problem =
-  Problem
-  { ind = 81
-  , name = "Path sum: two ways"
-  , solution = minPathSum $ listMatrixToArr matrix
-  }
+problem = Problem 81 "Path sum: two ways" (minPathSum $ listMatrixToArr matrix)
 
 minPathSum :: (Ord a1, Num a1, Num a, Ix a) => Array a (Array a a1) -> a1
 minPathSum arr = (helper (1, 1) M.empty) M.! (1, 1)

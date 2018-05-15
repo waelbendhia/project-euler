@@ -7,11 +7,7 @@ import Problem
 
 problem :: Problem Integer
 problem =
-  Problem
-  { ind = 31
-  , name = "Coin sums"
-  , solution = coinCombinations [1, 2, 5, 10, 20, 50, 100, 200] 200
-  }
+  Problem 31 "Coin sums" (coinCombinations [1, 2, 5, 10, 20, 50, 100, 200] 200)
 
 coinCombinations :: [M.Key] -> M.Key -> Integer
 coinCombinations coins val = (coin coins 0 (M.singleton 0 1)) M.! val

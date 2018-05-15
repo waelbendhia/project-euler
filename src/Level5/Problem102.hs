@@ -8,11 +8,9 @@ import Problem
 problem :: Problem Integer
 problem =
   Problem
-  { ind = 102
-  , name = "Triangle containment"
-  , solution =
-      toInteger $ length $ filter (flip isInTriangle $ (0, 0)) triangles
-  }
+    102
+    "Triangle containment"
+    (toInteger $ length $ filter (flip isInTriangle $ (0, 0)) triangles)
 
 isInTriangle ::
      (Integral t, Ord t) => ((t, t), (t, t), (t, t)) -> (t, t) -> Bool

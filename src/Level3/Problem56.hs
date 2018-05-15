@@ -8,10 +8,9 @@ import Problem
 problem :: Problem Integer
 problem =
   Problem
-  { ind = 56
-  , name = "Powerful digit sum"
-  , solution = maximum $ map powerTupleDigitSum $ allPairsUnderN 100
-  }
+    56
+    "Powerful digit sum"
+    (maximum $ map powerTupleDigitSum $ allPairsUnderN 100)
 
 powerTupleDigitSum :: (Integer, Integer) -> Integer
 powerTupleDigitSum = digitSum . uncurry (^)

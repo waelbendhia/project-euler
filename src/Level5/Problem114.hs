@@ -8,12 +8,7 @@ import Problem
 
 -- Same as 117 except for some extra checks
 problem :: Problem Integer
-problem =
-  Problem
-  { ind = 114
-  , name = "Counting block combinations I"
-  , solution = possibleCombinations 50
-  }
+problem = Problem 114 "Counting block combinations I" (possibleCombinations 50)
 
 possibleCombinations :: Integer -> Integer
 possibleCombinations maxUnits = r ! maxUnits

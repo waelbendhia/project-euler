@@ -9,10 +9,9 @@ import Problem
 problem :: Problem Integer
 problem =
   Problem
-  { ind = 75
-  , name = "Singular integer right triangles"
-  , solution = toInteger $ numberOfSingleFormingBelow 1500000
-  }
+    75
+    "Singular integer right triangles"
+    (toInteger $ numberOfSingleFormingBelow 1500000)
 
 -- I attemtped a brute force solution taht was incredibly slow, then I looked
 -- into if it had anything to do with prime factorization before I simply

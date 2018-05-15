@@ -5,12 +5,7 @@ module Level2.Problem44
 import Problem
 
 problem :: Problem Integer
-problem =
-  Problem
-  { ind = 44
-  , name = "Pentagon numbers"
-  , solution = subT $ head $ allSuperPentagonal
-  }
+problem = Problem 44 "Pentagon numbers" (subT $ head $ allSuperPentagonal)
 
 allSuperPentagonal :: [(Integer, Integer)]
 allSuperPentagonal =

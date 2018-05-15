@@ -7,12 +7,7 @@ import Data.Set (Set, fromList)
 import Problem
 
 problem :: Problem Integer
-problem =
-  Problem
-    { ind = 346
-    , name = "Strong Repunits"
-    , solution = (+ 1) $ sum $ strongRepUnits $ 10 ^ 12
-    }
+problem = Problem 346 "Strong Repunits" ((+ 1) $ sum $ strongRepUnits $ 10 ^ 12)
 
 generateRepUnits :: Num b => b -> [b]
 generateRepUnits b = map (+ 1) $ scanl (+) 0 $ map (b ^) [1 ..]

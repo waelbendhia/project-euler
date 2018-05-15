@@ -12,10 +12,9 @@ import Problem
 problem :: Problem Integer
 problem =
   Problem
-  { ind = 54
-  , name = "Poker hands"
-  , solution = toInteger $ length $ filter (== "P1") $ map checkWinner games
-  }
+    54
+    "Poker hands"
+    (toInteger $ length $ filter (== "P1") $ map checkWinner games)
 
 -- Perhaps not an ideal solution but I opted to use this problem as an
 -- exercises in haskell data types

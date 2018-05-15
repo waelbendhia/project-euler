@@ -11,11 +11,7 @@ import Problem
 
 problem :: Problem Integer
 problem =
-  Problem
-  { ind = 87
-  , name = "Prime power triples"
-  , solution = toInteger $ countPrimePowers 50000000
-  }
+  Problem 87 "Prime power triples" (toInteger $ countPrimePowers 50000000)
 
 countPrimePowers :: Integer -> Int
 countPrimePowers n =
@@ -26,12 +22,12 @@ countPrimePowers n =
          then Nothing
          else Just $
               let v = f $ toThruple (V.length pr) i
-              in ( if v < n
-                     then Just $ f $ toThruple (V.length pr) i
-                     else Nothing
-                 , if v >= n
-                     then skip (V.length pr) i
-                     else i + 1))
+               in ( if v < n
+                      then Just $ f $ toThruple (V.length pr) i
+                      else Nothing
+                  , if v >= n
+                      then skip (V.length pr) i
+                      else i + 1))
     S.empty
     0
   where

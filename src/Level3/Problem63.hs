@@ -6,11 +6,7 @@ import Problem
 
 problem :: Problem Integer
 problem =
-  Problem
-  { ind = 63
-  , name = "Powerful digit counts"
-  , solution = toInteger $ length $ allPowerfulDigits
-  }
+  Problem 63 "Powerful digit counts" (toInteger $ length $ allPowerfulDigits)
 
 allPowerfulDigits :: [Integer]
 allPowerfulDigits = concatMap f [1 .. 9]

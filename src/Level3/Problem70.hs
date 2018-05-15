@@ -7,16 +7,14 @@ import Data.Numbers.Primes
 
 import Problem
 
+-- When compiled this yields a result in about a minute, there should be
+-- more optimizations possible, but hey it works.
 problem :: Problem Integer
 problem =
   Problem
-  { ind = 70
-  , name = "Totient permutation"
-  , solution
-    -- when compiled this yields a result in about a minute, there should be
-    -- more optimizations possible, but hey it works.
-     = minimumBy compareByInvTotient $ filter isPhiPermutation [2 .. 10000000]
-  }
+    70
+    "Totient permutation"
+    (minimumBy compareByInvTotient $ filter isPhiPermutation [2 .. 10000000])
 
 compareByInvTotient :: (Integral a, Integral a1) => a1 -> a -> Ordering
 compareByInvTotient a b = compare (invTotient a) (invTotient b)

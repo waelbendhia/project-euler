@@ -6,12 +6,7 @@ import qualified Data.Set as S
 import Problem
 
 problem :: Problem Integer
-problem =
-  Problem
-    { ind = 23
-    , name = "Non-abundant sums"
-    , solution = sumOfAllNonAbundantSumNumbers
-    }
+problem = Problem 23 "Non-abundant sums" sumOfAllNonAbundantSumNumbers
 
 sumOfAllNonAbundantSumNumbers :: Integer
 sumOfAllNonAbundantSumNumbers =

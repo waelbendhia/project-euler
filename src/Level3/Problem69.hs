@@ -9,11 +9,7 @@ import Problem
 
 problem :: Problem Integer
 problem =
-  Problem
-  { ind = 69
-  , name = "Totient maximum"
-  , solution = maximumBy compareByInvTotient [2 .. 1000000]
-  }
+  Problem 69 "Totient maximum" (maximumBy compareByInvTotient [2 .. 1000000])
 
 compareByInvTotient :: (Integral a, Integral a1) => a1 -> a -> Ordering
 compareByInvTotient a b = compare (invTotient a) (invTotient b)

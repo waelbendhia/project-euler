@@ -7,10 +7,9 @@ import Problem
 problem :: Problem Integer
 problem =
   Problem
-  { ind = 73
-  , name = "Counting fractions in a range"
-  , solution = toInteger $ uniqueFractionsInRange (1, 3) (1, 2) 12000
-  }
+    73
+    "Counting fractions in a range"
+    (toInteger $ uniqueFractionsInRange (1, 3) (1, 2) 12000)
 
 multiply :: Integral t => (t, t) -> t -> (t, t)
 multiply (n, d) x = ((x * n) `div` d, (x * n) `rem` d)
@@ -25,7 +24,7 @@ uniqueFractionsInRange minVal maxVal n =
              case multiply maxVal x of
                (d, 0) -> d - 1
                (d, _) -> d
-       in phiRange floorVal ceilingVal x)
+        in phiRange floorVal ceilingVal x)
     [1 .. n]
 
 phiRange :: Integral a => a -> a -> a -> Int

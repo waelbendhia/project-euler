@@ -9,10 +9,9 @@ import Problem
 problem :: Problem Integer
 problem =
   Problem
-  { ind = 64
-  , name = "Odd period square roots"
-  , solution = toInteger $ length $ filter odd $ map periodLength [1 .. 10000]
-  }
+    64
+    "Odd period square roots"
+    (toInteger $ length $ filter odd $ map periodLength [1 .. 10000])
 
 periodLength :: Integer -> Int
 periodLength = length . snd . fractionalExpansion

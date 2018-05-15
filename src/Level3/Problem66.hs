@@ -10,13 +10,11 @@ import Problem
 problem :: Problem Integer
 problem =
   Problem
-  { ind = 66
-  , name = "Diophantine equation"
-  , solution =
-      fst $
-      maximumBy (\(_, a) (_, b) -> compare a b) $
-      minimalDiophantineSolutionsInRange [1 .. 1000]
-  }
+    66
+    "Diophantine equation"
+    (fst $
+     maximumBy (\(_, a) (_, b) -> compare a b) $
+     minimalDiophantineSolutionsInRange [1 .. 1000])
 
 -- Read https://en.wikipedia.org/wiki/Pell%27s_equation
 minimalDiophantineSolutionsInRange ::

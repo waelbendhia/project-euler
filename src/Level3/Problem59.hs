@@ -9,11 +9,7 @@ import Problem
 
 problem :: Problem Integer
 problem =
-  Problem
-  { ind = 59
-  , name = "XOR decryption"
-  , solution = toInteger $ sum $ map ord $ bruteForce message
-  }
+  Problem 59 "XOR decryption" (toInteger $ sum $ map ord $ bruteForce message)
 
 keys :: [[Char]]
 keys = [[a, b, c] | a <- ['a' .. 'z'], b <- ['a' .. 'z'], c <- ['a' .. 'z']]

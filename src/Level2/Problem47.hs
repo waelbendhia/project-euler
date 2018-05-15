@@ -8,11 +8,7 @@ import Problem
 
 problem :: Problem Integer
 problem =
-  Problem
-  { ind = 47
-  , name = "Distinct primes factors"
-  , solution = head $ nConsecutiveWithNPrimeFactors 4
-  }
+  Problem 47 "Distinct primes factors" (head $ nConsecutiveWithNPrimeFactors 4)
 
 nConsecutiveWithNPrimeFactors :: Int -> [Integer]
 nConsecutiveWithNPrimeFactors n = helper [1 ..]

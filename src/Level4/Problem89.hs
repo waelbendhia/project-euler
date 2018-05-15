@@ -6,16 +6,11 @@ import Level4.Problem89Numbers
 import Problem
 
 problem :: Problem Integer
-problem =
-  Problem
-  { ind = 89
-  , name = "Roman numerals"
-  , solution = toInteger $ sum $ map savedChars numbers
-  }
+problem = Problem 89 "Roman numerals" (toInteger $ sum $ map savedChars numbers)
 
--- The easiest to solve this problem would have been to replace all sub-optimal forms
--- (IIII, IIIII, etc...) of numbers with their with two spaces and then count
--- the string length difference, but writing converters seemed more fun.
+-- The easiest to solve this problem would have been to replace all sub-optimal 
+-- forms (IIII, IIIII, etc...) of numbers with their with two spaces and then 
+-- count the string length difference, but writing converters seemed more fun.
 savedChars :: [Char] -> Int
 savedChars n = length n - length (intToMinimalRomanNumeral $romanNumerToInt n)
 

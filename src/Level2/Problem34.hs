@@ -6,12 +6,7 @@ import Data.Char
 import Problem
 
 problem :: Problem Integer
-problem =
-  Problem
-  { ind = 34
-  , name = "Digit factorials"
-  , solution = toInteger $ sum correctNumbers
-  }
+problem = Problem 34 "Digit factorials" (toInteger $ sum correctNumbers)
 
 correctNumbers :: [Int]
 correctNumbers = filter check [3 .. upperBound]

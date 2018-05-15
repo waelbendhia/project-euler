@@ -5,12 +5,7 @@ module Level3.Problem61
 import Problem
 
 problem :: Problem Integer
-problem =
-  Problem
-  { ind = 61
-  , name = "Cyclical figurate numbers"
-  , solution = head $ map sum solve
-  }
+problem = Problem 61 "Cyclical figurate numbers" (head $ map sum solve)
 
 -- This solution is a bit verbose but it's late and I'm tired. Basically it's
 -- just a DFS where for each node a child as any number that belongs to a set

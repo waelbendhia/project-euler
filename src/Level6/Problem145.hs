@@ -7,10 +7,9 @@ import Problem
 problem :: Problem Integer
 problem =
   Problem
-  { ind = 145
-  , name = "How many reversible numbers are there below one-billion?"
-  , solution = numReversibleWithNDigits 9
-  }
+    145
+    "How many reversible numbers are there below one-billion?"
+    (numReversibleWithNDigits 9)
 
 -- As a base we can see for two digits numbers we have 20 solutions.
 -- For numbers with even number of digits we have:

@@ -16,10 +16,9 @@ import Problem
 problem :: Problem Integer
 problem =
   Problem
-  { ind = 125
-  , name = "Palindromic sums"
-  , solution = sum $ filter isPalindromeNumber $ allSquareSumsUnder $ 10 ^ 8
-  }
+    125
+    "Palindromic sums"
+    (sum $ filter isPalindromeNumber $ allSquareSumsUnder $ 10 ^ 8)
 
 isPalindromeNumber :: (Integral a, Show a) => a -> Bool
 isPalindromeNumber = isPalindrome . show

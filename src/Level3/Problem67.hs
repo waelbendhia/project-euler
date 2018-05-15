@@ -6,12 +6,7 @@ import Level3.Problem67Triangle
 import Problem
 
 problem :: Problem Integer
-problem =
-  Problem
-  { ind = 67
-  , name = "Maximum path sum II"
-  , solution = head $ maxPath theTriangle
-  }
+problem = Problem 67 "Maximum path sum II" (head $ maxPath theTriangle)
 
 maxPath :: (Ord a, Num a) => [[a]] -> [a]
 maxPath [] = [0]

@@ -9,12 +9,10 @@ import Problem
 problem :: Problem Integer
 problem =
   Problem
-  { ind = 80
-  , name = "Square root digital expansion"
-  , solution =
-      toInteger $
-      sum $ map (sumNDigitsRoot 100) $ filter (not . isSquare) [1 .. 100]
-  }
+    80
+    "Square root digital expansion"
+    (toInteger $
+     sum $ map (sumNDigitsRoot 100) $ filter (not . isSquare) [1 .. 100])
 
 sumNDigitsRoot :: Integer -> Integer -> Int
 sumNDigitsRoot = ((sum . map digitToInt) .) . nDigitsRoot

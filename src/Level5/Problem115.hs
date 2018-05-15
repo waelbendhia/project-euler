@@ -11,12 +11,7 @@ import Problem
 -- made to run in (I think) linear time. I'm just not interested enough in this
 -- problem to do it.
 problem :: Problem Integer
-problem =
-  Problem
-  { ind = 115
-  , name = "Counting block combinations II"
-  , solution = dumbFunction 50
-  }
+problem = Problem 115 "Counting block combinations II" (dumbFunction 50)
 
 fillCount :: (Enum p, Num p, Num e, Ix p) => p -> p -> e
 fillCount m n = r ! n

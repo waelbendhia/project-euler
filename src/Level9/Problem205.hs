@@ -10,15 +10,13 @@ import Problem
 problem :: Problem Integer
 problem =
   Problem
-  { ind = 205
-  , name = "Dice Game"
-  , solution =
-      round $
-      (* 10 ^ 7) $
-      winProbability
-        (sumsWithProbabilities 9 [1, 2, 3, 4])
-        (sumsWithProbabilities 6 [1, 2, 3, 4, 5, 6])
-  }
+    205
+    "Dice Game"
+    (round $
+     (* 10 ^ 7) $
+     winProbability
+       (sumsWithProbabilities 9 [1, 2, 3, 4])
+       (sumsWithProbabilities 6 [1, 2, 3, 4, 5, 6]))
 
 sumsWithOccurence :: (Eq a, Integral a, Ord a) => a -> [a] -> [(a, Int)]
 sumsWithOccurence numDice diceValues =

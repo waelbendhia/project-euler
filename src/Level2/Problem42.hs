@@ -9,10 +9,9 @@ import Problem
 problem :: Problem Integer
 problem =
   Problem
-  { ind = 42
-  , name = "Coded triangle numbers"
-  , solution = toInteger $ length $ filter isTriangleWord wordsList
-  }
+    42
+    "Coded triangle numbers"
+    (toInteger $ length $ filter isTriangleWord wordsList)
 
 isTriangleWord :: [Char] -> Bool
 isTriangleWord = (/= Nothing) . triangleTerm . wordValue

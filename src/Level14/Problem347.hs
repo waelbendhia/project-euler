@@ -9,11 +9,7 @@ import Problem
 
 problem :: Problem Integer
 problem =
-  Problem
-  { ind = 347
-  , name = "Largest integer divisible by two primes"
-  , solution = capitalS (10 ^ 7)
-  }
+  Problem 347 "Largest integer divisible by two primes" (capitalS (10 ^ 7))
 
 capitalS n = helper primes
   where

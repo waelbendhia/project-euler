@@ -6,11 +6,7 @@ import Problem
 
 problem :: Problem Integer
 problem =
-  Problem
-  { ind = 48
-  , name = "Self powers"
-  , solution = lastNDigits 10 $ sum $ take 1000 $ powerSeries
-  }
+  Problem 48 "Self powers" (lastNDigits 10 $ sum $ take 1000 $ powerSeries)
 
 lastNDigits :: Int -> Integer -> Integer
 lastNDigits n = read . reverse . take n . reverse . show

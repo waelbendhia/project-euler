@@ -8,12 +8,7 @@ import Data.Numbers.Primes
 import Problem
 
 problem :: Problem Integer
-problem =
-  Problem
-  { ind = 72
-  , name = "Counting fractions"
-  , solution = uniqueFractionsUnder 1000000
-  }
+problem = Problem 72 "Counting fractions" (uniqueFractionsUnder 1000000)
 
 -- For each n the number of unique fractions m/n where m < n is the number of
 -- coprimes m to n  plus the number of unique fractions under (n-1). Now if

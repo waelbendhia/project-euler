@@ -12,13 +12,11 @@ import Problem
 problem :: Problem Integer
 problem =
   Problem
-  { ind = 90
-  , name = "Cube digit pairs"
-  , solution =
-      toInteger $
-      length $
-      filter (uncurry $ produces (allCubesUnder 100)) (allDicePairs $ allDice 6)
-  }
+    90
+    "Cube digit pairs"
+    (toInteger $
+     length $
+     filter (uncurry $ produces (allCubesUnder 100)) (allDicePairs $ allDice 6))
 
 produces :: (Num a, Eq a, Foldable t) => t a -> [a] -> [a] -> Bool
 produces ns d1 d2 =

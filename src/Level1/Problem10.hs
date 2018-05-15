@@ -7,8 +7,4 @@ import Problem
 
 problem :: Problem Integer
 problem =
-  Problem
-  { ind = 10
-  , name = "Summation of primes"
-  , solution = sum $ takeWhile (< 2000000) $ primes
-  }
+  Problem 10 "Summation of primes" (sum $ takeWhile (< 2000000) $ primes)

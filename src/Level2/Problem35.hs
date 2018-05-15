@@ -7,11 +7,7 @@ import Problem
 
 problem :: Problem Integer
 problem =
-  Problem
-  { ind = 35
-  , name = "Circular primes"
-  , solution = toInteger $length $ circularPrimesUnder 1000000
-  }
+  Problem 35 "Circular primes" (toInteger $length $ circularPrimesUnder 1000000)
 
 circularPrimesUnder :: Int -> [Int]
 circularPrimesUnder n = filter isCircularPrime $ takeWhile (<= n) primes

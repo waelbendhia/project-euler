@@ -11,11 +11,7 @@ import Problem
 
 problem :: Problem Integer
 problem =
-  Problem
-  { ind = 82
-  , name = "Path sum: three ways"
-  , solution = minPathSum $ listMatrixToArr matrix
-  }
+  Problem 82 "Path sum: three ways" (minPathSum $ listMatrixToArr matrix)
 
 -- Applying the same algorithm as Problem 81 (which was an implementation of 
 -- Djikstra'a algorithm) would be kind of boring, so let's try something else.

@@ -11,10 +11,9 @@ import Problem
 problem :: Problem Integer
 problem =
   Problem
-  { ind = 119
-  , name = "Digit power sum"
-  , solution = (filter isPowerDigitSum $ allPowersBounded 100) !! 29
-  }
+    119
+    "Digit power sum"
+    ((filter isPowerDigitSum $ allPowersBounded 100) !! 29)
 
 sumDigits :: (Show a, Integral a) => a -> a
 sumDigits = fromIntegral . sum . map digitToInt . show

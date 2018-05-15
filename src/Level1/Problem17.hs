@@ -9,10 +9,9 @@ import Problem
 problem :: Problem Integer
 problem =
   Problem
-  { ind = 17
-  , name = "Number letter counts"
-  , solution = fromIntegral $ countAllNumbersIn [1 .. 1000]
-  }
+    17
+    "Number letter counts"
+    (fromIntegral $ countAllNumbersIn [1 .. 1000])
 
 countAllNumbersIn :: [Integer] -> Int
 countAllNumbersIn = length . concat . map nameNumber

@@ -8,10 +8,9 @@ import Problem
 problem :: Problem Integer
 problem =
   Problem
-  { ind = 46
-  , name = "Goldbach's other conjecture"
-  , solution = head $ filter (not . isGoldbachNum) oddComposites
-  }
+    46
+    "Goldbach's other conjecture"
+    (head $ filter (not . isGoldbachNum) oddComposites)
 
 isGoldbachNum :: Integral a => a -> Bool
 isGoldbachNum n =

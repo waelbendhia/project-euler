@@ -10,12 +10,10 @@ import Problem
 problem :: Problem Integer
 problem =
   Problem
-  { ind = 68
-  , name = "Magic 5-gon ring"
-  , solution =
-      read $
-      maximum $ filter ((== 16) . length) $ map fiveGonToString validFiveGons
-  }
+    68
+    "Magic 5-gon ring"
+    (read $
+     maximum $ filter ((== 16) . length) $ map fiveGonToString validFiveGons)
 
 data Line =
   Line Integer

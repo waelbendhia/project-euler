@@ -9,17 +9,15 @@ import Problem
 problem :: Problem Integer
 problem =
   Problem
-  { ind = 99
-  , name = "Largest exponential"
-  , solution =
-      fst $
-      maximumBy
-        (\a b ->
-           compareExp
-             (mapTuple fromInteger $ snd a)
-             (mapTuple fromInteger $ snd b)) $
-      zip [1 ..] baseExps
-  }
+    99
+    "Largest exponential"
+    (fst $
+     maximumBy
+       (\a b ->
+          compareExp
+            (mapTuple fromInteger $ snd a)
+            (mapTuple fromInteger $ snd b)) $
+     zip [1 ..] baseExps)
 
 -- We know that log(x^a) = a*log(x) and that if x > y then log(x)>log(y)
 -- so to compare two base and exponent pairs we can compare their logarithms

@@ -10,10 +10,9 @@ import Problem
 problem :: Problem Integer
 problem =
   Problem
-  { ind = 62
-  , name = "Cubic permutations"
-  , solution = fromMaybe 0 $ fmap head $ findCubicPermutationsOfLength 5
-  }
+    62
+    "Cubic permutations"
+    (fromMaybe 0 $ fmap head $ findCubicPermutationsOfLength 5)
 
 findCubicPermutationsOfLength :: Int -> Maybe [Integer]
 findCubicPermutationsOfLength l = helper [] (cubes)

@@ -8,9 +8,7 @@ import Data.Numbers.Primes
 import Problem
 
 problem :: Problem Integer
-problem =
-  Problem
-    {ind = 381, name = "(prime-k) factorial", solution = sumCapitalS (10 ^ 8)}
+problem = Problem 381 "(prime-k) factorial" (sumCapitalS (10 ^ 8))
 
 -- S(p) = (p-5)! + (p-4)! + (p-3)! + (p-2)! + (p-1)!
 -- S(p) = (p-5)! * (1 + (p-4) + (p-4)(p-3) + (p-4)(p-3)(p-2) + (p-4)(p-3)(p-2)(p-1))

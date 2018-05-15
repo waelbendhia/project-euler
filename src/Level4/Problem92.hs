@@ -6,17 +6,15 @@ import Data.Char
 
 import Problem
 
+-- Kinda dumb and slow but it works. Tried an implementation with a map of
+-- previous results and blew the stack and I'd rather not spend much time
+-- on this problem.
 problem :: Problem Integer
 problem =
   Problem
-  { ind = 92
-  , name = "Square digit chains"
-  , solution
-    -- Kinda dumb and slow but it works. Tried an implementation with a map of
-    -- previous results and blew the stack and I'd rather not spend much time
-    -- on this problem.
-     = toInteger $ length $ filter ((== 89) . sdsChainTerm) [1 .. 10000000]
-  }
+    92
+    "Square digit chains"
+    (toInteger $ length $ filter ((== 89) . sdsChainTerm) [1 .. 10000000])
 
 sdsChainTerm :: Int -> Int
 sdsChainTerm n =

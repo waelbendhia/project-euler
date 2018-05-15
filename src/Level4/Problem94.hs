@@ -7,12 +7,10 @@ import Problem
 problem :: Problem Integer
 problem =
   Problem
-  { ind = 94
-  , name = "Almost equilateral triangle"
-  , solution =
-      sum $
-      takeWhile (< 10 ^ 9) $ map almostEquiPermiter filteredParentChildTriplets
-  }
+    94
+    "Almost equilateral triangle"
+    (sum $
+     takeWhile (< 10 ^ 9) $ map almostEquiPermiter filteredParentChildTriplets)
 
 filteredParentChildTriplets :: [(Integer, Integer, Integer)]
 filteredParentChildTriplets =

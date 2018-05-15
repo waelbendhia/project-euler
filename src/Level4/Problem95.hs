@@ -15,14 +15,12 @@ import Problem
 problem :: Problem Integer
 problem =
   Problem
-  { ind = 95
-  , name = "Amicable chains"
-  , solution =
-      toInteger $
-      minimum $
-      maximumBy (\a b -> compare (length a) (length b)) $
-      filter isAmicableChain $ allChainsBounded $ 10 ^ 6
-  }
+    95
+    "Amicable chains"
+    (toInteger $
+     minimum $
+     maximumBy (\a b -> compare (length a) (length b)) $
+     filter isAmicableChain $ allChainsBounded $ 10 ^ 6)
 
 sumDivisors :: Int -> Int
 sumDivisors = (+ 1) . sum . divisors

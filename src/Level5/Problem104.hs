@@ -10,12 +10,9 @@ import Problem
 problem :: Problem Integer
 problem =
   Problem
-  { ind = 104
-  , name = "Pandigital Fibonacci ends"
-  , solution =
-      fromMaybe 0 $
-      findIndex problemCheck fibonacciSequence >>= Just . toInteger
-  }
+    104
+    "Pandigital Fibonacci ends"
+    (fromMaybe 0 $ findIndex problemCheck fibonacciSequence >>= Just . toInteger)
 
 fibonacciSequence :: [Integer]
 fibonacciSequence =

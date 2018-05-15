@@ -10,11 +10,9 @@ import Problem
 problem :: Problem Integer
 problem =
   Problem
-  { ind = 123
-  , name = "Prime square remainders"
-  , solution =
-      toInteger $ (+) 1 $ fromMaybe 0 $ findIndex (> (10 ^ 10)) fnPrimes
-  }
+    123
+    "Prime square remainders"
+    (toInteger $ (+) 1 $ fromMaybe 0 $ findIndex (> (10 ^ 10)) fnPrimes)
 
 fnPrimes :: [Integer]
 fnPrimes = map (uncurry fn) $ zip primes [1 ..]

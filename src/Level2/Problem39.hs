@@ -10,14 +10,12 @@ import Problem
 problem :: Problem Integer
 problem =
   Problem
-  { ind = 39
-  , name = "Integer right triangles"
-  , solution =
-      toInteger $
-      fst $
-      maximumBy compareTuples $
-      M.toList $ foldl insertAdd M.empty $ map sumT rightTriangles
-  }
+    39
+    "Integer right triangles"
+    (toInteger $
+     fst $
+     maximumBy compareTuples $
+     M.toList $ foldl insertAdd M.empty $ map sumT rightTriangles)
 
 insertAdd :: Num a => M.IntMap a -> Int -> M.IntMap a
 insertAdd m e = M.insertWith (+) e 1 m

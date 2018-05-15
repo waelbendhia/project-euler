@@ -10,11 +10,9 @@ import Problem
 problem :: Problem Integer
 problem =
   Problem
-  { ind = 206
-  , name = "Concealed Square"
-  , solution =
-      fromMaybe 0 $ fmap wholeRoot $ findSquareForShape "1_2_3_4_5_6_7_8_9_0"
-  }
+    206
+    "Concealed Square"
+    (fromMaybe 0 $ fmap wholeRoot $ findSquareForShape "1_2_3_4_5_6_7_8_9_0")
 
 findSquareForShape :: [Char] -> Maybe Integer
 findSquareForShape shape =

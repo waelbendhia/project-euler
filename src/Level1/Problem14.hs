@@ -6,12 +6,7 @@ import qualified Data.IntMap.Lazy as M
 import Problem
 
 problem :: Problem Integer
-problem =
-  Problem
-    { ind = 14
-    , name = "Longest Collatz sequence"
-    , solution = fromIntegral $ solver 1000000
-    }
+problem = Problem 14 "Longest Collatz sequence" (fromIntegral $ solver 1000000)
 
 solver :: Int -> Int
 solver bound = fst $ highestUnder bound

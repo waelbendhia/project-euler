@@ -6,12 +6,7 @@ import qualified Data.Set as S
 import Problem
 
 problem :: Problem Integer
-problem =
-  Problem
-  { ind = 29
-  , name = "Distinct powers"
-  , solution = toInteger $ distinctPowersIn 2 100
-  }
+problem = Problem 29 "Distinct powers" (toInteger $ distinctPowersIn 2 100)
 
 distinctPowersIn :: Integral a => a -> a -> Int
 distinctPowersIn lower upper =

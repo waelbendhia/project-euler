@@ -15,11 +15,7 @@ import Problem
 -- You gots to love you some dynamic programming.
 problem :: Problem Integer
 problem =
-  Problem
-  { ind = 117
-  , name = "Red, green and blue tiles"
-  , solution = possibleCombinations 50 [1 .. 4]
-  }
+  Problem 117 "Red, green and blue tiles" (possibleCombinations 50 [1 .. 4])
 
 possibleCombinations :: Integer -> [Integer] -> Integer
 possibleCombinations maxUnits tiles = r ! maxUnits

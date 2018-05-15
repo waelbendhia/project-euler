@@ -14,12 +14,7 @@ import Problem
 -- Algorithm is trivial, runs in 43 seconds but it's my first time using the ST
 -- Monad! So yay.
 problem :: Problem Integer
-problem =
-  Problem
-  { ind = 357
-  , name = "Prime generating integers"
-  , solution = sum $ pgiUnder $ 10 ^ 8
-  }
+problem = Problem 357 "Prime generating integers" (sum $ pgiUnder $ 10 ^ 8)
 
 createPrimeLookup :: Integer -> ST s (STArray s Integer Bool)
 createPrimeLookup b = do

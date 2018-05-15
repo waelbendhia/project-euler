@@ -7,12 +7,10 @@ import Problem
 problem :: Problem Integer
 problem =
   Problem
-  { ind = 57
-  , name = "Square root convergents"
-  , solution =
-      toInteger $
-      length $ filter numeratorLonger $ map approximateSquareRoot2 [1 .. 1000]
-  }
+    57
+    "Square root convergents"
+    (toInteger $
+     length $ filter numeratorLonger $ map approximateSquareRoot2 [1 .. 1000])
 
 -- The approximation is the series u(n+1) = 1 + 1 / (1 + u(n)) and u(0) = 1.
 -- Using this definition we can determine that numerator for u(n+1) is 

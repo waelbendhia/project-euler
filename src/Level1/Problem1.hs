@@ -5,9 +5,7 @@ module Level1.Problem1
 import Problem
 
 problem :: Problem Integer
-problem =
-  Problem
-  {ind = 1, name = "Multiples of 3 and 5", solution = multiplesOf [3, 5] 1000}
+problem = Problem 1 "Multiples of 3 and 5" (multiplesOf [3, 5] 1000)
 
 multiplesOf :: (Integral a, Foldable t) => t a -> a -> a
 multiplesOf l under =

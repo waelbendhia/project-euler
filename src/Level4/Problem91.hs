@@ -7,10 +7,9 @@ import Problem
 problem :: Problem Integer
 problem =
   Problem
-  { ind = 91
-  , name = "Right triangles with integer coordinates"
-  , solution = toInteger $ length $ trianglesInBound (50 :: Integer)
-  }
+    91
+    "Right triangles with integer coordinates"
+    (toInteger $ length $ trianglesInBound (50 :: Integer))
 
 -- This brute force algorithm was only meant to check further solutions but it
 -- turned out to be fast enough. I hope to revisit this problem at some point.

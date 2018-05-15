@@ -8,14 +8,11 @@ import Problem
 
 problem :: Problem Integer
 problem =
-  Problem
-  { ind = 78
-  , name = "Coin partitions"
-  , solution = toInteger $ firstPartitionDivisibleBy 1000000
-  }
+  Problem 78 "Coin partitions" (toInteger $ firstPartitionDivisibleBy 1000000)
 
 -- The previous algorithm for calculating partitions are too slow for this problem
--- so off to WikiPedia, which gives us p(n) = p(n-k(1)) + p(n-k(2)) - p(n-k(3)) - p(n-k(4))...
+-- so off to WikiPedia, which gives us
+-- p(n) = p(n-k(1)) + p(n-k(2)) - p(n-k(3)) - p(n-k(4))...
 -- where k(n) is the nth generalized pentagonal number.
 -- The final algorithm is attempts to find an n in [1..10] that is divisble by
 -- the argument, if none is found then that range is multiplied by 10 until a

@@ -10,13 +10,11 @@ import Problem
 problem :: Problem Integer
 problem =
   Problem
-  { ind = 49
-  , name = "Prime permutations"
-  , solution =
-      read $
-      concatMap show $
-      head $ filter (not . any (== 1487)) $ arithmeticSharedDigitNPrimes 4
-  }
+    49
+    "Prime permutations"
+    (read $
+     concatMap show $
+     head $ filter (not . any (== 1487)) $ arithmeticSharedDigitNPrimes 4)
 
 arithmeticSharedDigitNPrimes :: (Show a, Integral a, Integral b) => b -> [[a]]
 arithmeticSharedDigitNPrimes n =

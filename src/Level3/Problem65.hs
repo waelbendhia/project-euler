@@ -8,14 +8,11 @@ import Problem
 problem :: Problem Integer
 problem =
   Problem
-  { ind = 65
-  , name = "Convergents of e"
-  , solution =
-      toInteger $
-      sum $
-      map digitToInt $
-      show $ fst $ fractionFromConvergent $ nthConvergentOfe 100
-  }
+    65
+    "Convergents of e"
+    (toInteger $
+     sum $
+     map digitToInt $ show $ fst $ fractionFromConvergent $ nthConvergentOfe 100)
 
 nthConvergentOfe :: (Enum a, Num a, Num t) => Int -> (t, [a])
 nthConvergentOfe n = (2, take (n - 1) expansionOfe)

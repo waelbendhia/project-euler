@@ -6,11 +6,7 @@ import Problem
 
 problem :: Problem Integer
 problem =
-  Problem
-  { ind = 19
-  , name = "Counting Sundays"
-  , solution = fromIntegral $ sundaysOnFirstIn [1901 .. 2000]
-  }
+  Problem 19 "Counting Sundays" (fromIntegral $ sundaysOnFirstIn [1901 .. 2000])
 
 sundaysOnFirstIn :: [Int] -> Int
 sundaysOnFirstIn =

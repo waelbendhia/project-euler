@@ -7,10 +7,9 @@ import Problem
 problem :: Problem Integer
 problem =
   Problem
-  { ind = 45
-  , name = "Triangular, pentagonal, and hexagonal"
-  , solution = head $ dropWhile (<= 40755) triHexPentTerms
-  }
+    45
+    "Triangular, pentagonal, and hexagonal"
+    (head $ dropWhile (<= 40755) triHexPentTerms)
 
 triHexPentTerms :: [Integer]
 triHexPentTerms =

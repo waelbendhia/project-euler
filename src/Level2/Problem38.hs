@@ -9,11 +9,9 @@ import Problem
 problem :: Problem Integer
 problem =
   Problem
-  { ind = 38
-  , name = "Pandigital mutliples"
-  , solution =
-      maximum $ map producedNumber $ filter producesPandigitalSeries [2 .. 9876]
-  }
+    38
+    "Pandigital mutliples"
+    (maximum $ map producedNumber $ filter producesPandigitalSeries [2 .. 9876])
 
 multiplesUntilLength :: Integer -> [Integer]
 multiplesUntilLength x = take' [] $ map (* x) [1 ..]

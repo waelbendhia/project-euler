@@ -8,12 +8,10 @@ import Problem
 problem :: Problem Integer
 problem =
   Problem
-  { ind = 27
-  , name = "Quadratic primes"
-  , solution =
-      (\(a, b, _) -> a * b) $
-      largestPair [(a, b) | a <- [-999 .. 999], b <- [-1000 .. 1000]]
-  }
+    27
+    "Quadratic primes"
+    ((\(a, b, _) -> a * b) $
+     largestPair [(a, b) | a <- [-999 .. 999], b <- [-1000 .. 1000]])
 
 largestPair :: [(Integer, Integer)] -> (Integer, Integer, Int)
 largestPair =

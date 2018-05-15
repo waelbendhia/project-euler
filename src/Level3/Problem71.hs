@@ -7,10 +7,9 @@ import Problem
 problem :: Problem Integer
 problem =
   Problem
-  { ind = 71
-  , name = "Ordered fractions"
-  , solution = numerator $ biggestFracUnder 1000000 (Fraction 3 7)
-  }
+    71
+    "Ordered fractions"
+    (numerator $ biggestFracUnder 1000000 $ Fraction 3 7)
 
 data Fraction =
   Fraction Integer

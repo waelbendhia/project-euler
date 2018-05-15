@@ -13,12 +13,10 @@ import Problem
 problem :: Problem Integer
 problem =
   Problem
-  { ind = 84
-  , name = "Monopoly odds"
-  , solution =
-      read $
-      modal $ map (fst . fst) $ reverse $ statisticsForGame (1, 4) 100000 0
-  }
+    84
+    "Monopoly odds"
+    (read $
+     modal $ map (fst . fst) $ reverse $ statisticsForGame (1, 4) 100000 0)
 
 data Tiles
   = Go
@@ -49,12 +47,12 @@ data GameState = GameState
 initGame :: (Eq t, Num t) => (Int, Int) -> t -> Int -> GameState
 initGame dRange turns seed =
   GameState
-  { position = 0
-  , chanceDeck = chDeck
-  , communityChestDeck = ccDeck
-  , prevDoubles = 0
-  , rolls = diceRolls
-  }
+    { position = 0
+    , chanceDeck = chDeck
+    , communityChestDeck = ccDeck
+    , prevDoubles = 0
+    , rolls = diceRolls
+    }
   where
     gen = mkStdGen seed
     (diceRolls, genAfterRolls) = generateNDiceRolls turns dRange gen
@@ -69,12 +67,12 @@ playTurn gs =
       if newDoubles == 3
         then Just
                GameState
-               { position = 10
-               , chanceDeck = chanceDeck gs
-               , communityChestDeck = communityChestDeck gs
-               , rolls = remaining
-               , prevDoubles = 0
-               }
+                 { position = 10
+                 , chanceDeck = chanceDeck gs
+                 , communityChestDeck = communityChestDeck gs
+                 , rolls = remaining
+                 , prevDoubles = 0
+                 }
         else Just $ handlePos' gs
       where handlePos' gs =
               case board !! position updated of
@@ -91,38 +89,38 @@ playTurn gs =
               case board !! newPos of
                 (_, GoToJail) ->
                   GameState
-                  { position = 10
-                  , chanceDeck = chanceDeck gs
-                  , communityChestDeck = communityChestDeck gs
-                  , rolls = remaining
-                  , prevDoubles = newDoubles
-                  }
+                    { position = 10
+                    , chanceDeck = chanceDeck gs
+                    , communityChestDeck = communityChestDeck gs
+                    , rolls = remaining
+                    , prevDoubles = newDoubles
+                    }
                 (_, Chance) ->
                   let (c, deck) = drawCard $ chanceDeck gs
-                  in GameState
-                     { position = nextPosition c newPos
-                     , chanceDeck = deck
-                     , communityChestDeck = communityChestDeck gs
-                     , rolls = remaining
-                     , prevDoubles = newDoubles
-                     }
+                   in GameState
+                        { position = nextPosition c newPos
+                        , chanceDeck = deck
+                        , communityChestDeck = communityChestDeck gs
+                        , rolls = remaining
+                        , prevDoubles = newDoubles
+                        }
                 (_, CommunityChest) ->
                   let (c, deck) = drawCard $ communityChestDeck gs
-                  in GameState
-                     { position = nextPosition c newPos
-                     , chanceDeck = chanceDeck gs
-                     , communityChestDeck = deck
-                     , rolls = remaining
-                     , prevDoubles = newDoubles
-                     }
+                   in GameState
+                        { position = nextPosition c newPos
+                        , chanceDeck = chanceDeck gs
+                        , communityChestDeck = deck
+                        , rolls = remaining
+                        , prevDoubles = newDoubles
+                        }
                 _ ->
                   GameState
-                  { position = newPos
-                  , chanceDeck = chanceDeck gs
-                  , communityChestDeck = communityChestDeck gs
-                  , rolls = remaining
-                  , prevDoubles = newDoubles
-                  }
+                    { position = newPos
+                    , chanceDeck = chanceDeck gs
+                    , communityChestDeck = communityChestDeck gs
+                    , rolls = remaining
+                    , prevDoubles = newDoubles
+                    }
 
 playGame :: (Num t, Eq t) => (Int, Int) -> t -> Int -> [(Int, Tiles)]
 playGame dRange turns s =
@@ -267,9 +265,9 @@ generateRandNumbers n range g =
       unfoldr
         (\(n', g') ->
            let (roll, nextG) = rollDice range g'
-           in if n' == n
-                then Nothing
-                else Just ((roll, nextG), (n' + 1, nextG)))
+            in if n' == n
+                 then Nothing
+                 else Just ((roll, nextG), (n' + 1, nextG)))
         (0, g)
 
 generateNDiceRolls ::

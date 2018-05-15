@@ -10,14 +10,12 @@ import Problem
 problem :: Problem Integer
 problem =
   Problem
-  { ind = 74
-  , name = "Digit factorial chains"
-  , solution =
-      toInteger $
-      length $
-      M.filter (== 60) $
-      M.filterWithKey (\k _ -> k <= 1000000) $ allFactorialLengths 1000000
-  }
+    74
+    "Digit factorial chains"
+    (toInteger $
+     length $
+     M.filter (== 60) $
+     M.filterWithKey (\k _ -> k <= 1000000) $ allFactorialLengths 1000000)
 
 allFactorialLengths :: Num a => M.Key -> M.IntMap a
 allFactorialLengths n =

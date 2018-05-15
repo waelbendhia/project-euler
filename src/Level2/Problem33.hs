@@ -8,10 +8,9 @@ import Problem
 problem :: Problem Integer
 problem =
   Problem
-  { ind = 33
-  , name = "Digit cancelling fractions"
-  , solution = snd $ simplify $ productOfFractions finalFractions
-  }
+    33
+    "Digit cancelling fractions"
+    (snd $ simplify $ productOfFractions finalFractions)
 
 productOfFractions :: (Num a, Num a1, Foldable t) => t (a1, a) -> (a1, a)
 productOfFractions = foldl (\(pa, pb) (a, b) -> (pa * a, pb * b)) (1, 1)

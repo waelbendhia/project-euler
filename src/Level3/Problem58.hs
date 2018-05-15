@@ -7,15 +7,10 @@ import Data.Numbers.Primes
 import Problem
 
 problem :: Problem Integer
-problem =
-  Problem
-  { ind = 58
-  , name = "Spiral primes"
-  , solution = toInteger $ sideLengthForRatioUnder (1, 10)
-  }
+problem = Problem 58 "Spiral primes" (toInteger $ sideLengthForRatioUnder 1 10)
 
-sideLengthForRatioUnder :: (Int, Int) -> Int
-sideLengthForRatioUnder (n, d) = div (minLength - 1) 2 + 1
+sideLengthForRatioUnder :: Int -> Int -> Int
+sideLengthForRatioUnder n d = div (minLength - 1) 2 + 1
   where
     minLength = helper 0 1 $ tail spiralDiagonals
     helper ps ns (x1:x2:x3:x4:xs) =

@@ -14,11 +14,7 @@ import Problem
 -- generating a look up table is not worth gain.
 problem :: Problem Integer
 problem =
-  Problem
-  { ind = 387
-  , name = "Harshad Numbers"
-  , solution = sum $ strongRightTruncatableHarshadPrimes 14
-  }
+  Problem 387 "Harshad Numbers" (sum $ strongRightTruncatableHarshadPrimes 14)
 
 sumDigits :: Show a => a -> Integer
 sumDigits = toInteger . sum . map digitToInt . show

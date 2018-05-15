@@ -7,12 +7,10 @@ import Problem
 problem :: Problem Integer
 problem =
   Problem
-  { ind = 53
-  , name = "Combinatoric selections"
-  , solution =
-      toInteger $
-      length $ filter ((>= 1000000) . uncurry comb) $allPairsUnder 100
-  }
+    53
+    "Combinatoric selections"
+    (toInteger $
+     length $ filter ((>= 1000000) . uncurry comb) $allPairsUnder 100)
 
 allPairsUnder :: (Enum b, Num b) => b -> [(b, b)]
 allPairsUnder x = concatMap (\n -> map ((,) n) [1 .. n]) [1 .. x]

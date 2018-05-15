@@ -7,10 +7,9 @@ import Problem
 problem :: Problem Integer
 problem =
   Problem
-  { ind = 2
-  , name = "Even Fibonacci numbers"
-  , solution = sum $ filter even $ takeWhile (<= 4000000) fibonacciSequence
-  }
+    2
+    "Even Fibonacci numbers"
+    (sum $ filter even $ takeWhile (<= 4000000) fibonacciSequence)
 
 fibonacciSequence :: [Integer]
 fibonacciSequence =

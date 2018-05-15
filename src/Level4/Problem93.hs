@@ -9,21 +9,19 @@ import Problem
 problem :: Problem Integer
 problem =
   Problem
-  { ind = 93
-  , name = "Arithmetic expressions"
-  , solution =
-      read $
-      map intToDigit $
-      map truncate $
-      fst $
-      maximumBy (\(_, a) (_, b) -> compare a b) $
-      map
-        (\s ->
-           ( s
-           , length $
-             getConsecutive $ dropWhile (<= 0) $ filter isInt $ allResults s))
-        all4DigitSets
-  }
+    93
+    "Arithmetic expressions"
+    (read $
+     map intToDigit $
+     map truncate $
+     fst $
+     maximumBy (\(_, a) (_, b) -> compare a b) $
+     map
+       (\s ->
+          ( s
+          , length $
+            getConsecutive $ dropWhile (<= 0) $ filter isInt $ allResults s))
+       all4DigitSets)
 
 all4DigitSets :: [[Double]]
 all4DigitSets = do

@@ -7,10 +7,9 @@ import Problem
 problem :: Problem Integer
 problem =
   Problem
-  { ind = 24
-  , name = "Lexicographic permutations"
-  , solution = read $ findNthPermutation (1000000 - 1) "0123456789"
-  }
+    24
+    "Lexicographic permutations"
+    (read $ findNthPermutation (1000000 - 1) "0123456789")
 
 findNthPermutationIndexAt1 :: Eq a => Int -> [a] -> [a]
 findNthPermutationIndexAt1 n = findNthPermutation (n - 1)

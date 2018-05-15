@@ -9,11 +9,7 @@ import Problem
 
 problem :: Problem Integer
 problem =
-  Problem
-  { ind = 51
-  , name = "Prime digit replacements"
-  , solution = firstPrimeGeneratingSeriesOfLength 8
-  }
+  Problem 51 "Prime digit replacements" (firstPrimeGeneratingSeriesOfLength 8)
 
 firstPrimeGeneratingSeriesOfLength :: Int -> Integer
 firstPrimeGeneratingSeriesOfLength n =

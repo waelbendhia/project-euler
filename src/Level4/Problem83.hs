@@ -10,12 +10,7 @@ import Level4.Problem83Matrix
 import Problem
 
 problem :: Problem Integer
-problem =
-  Problem
-  { ind = 83
-  , name = "Path sum: four ways"
-  , solution = bfs $ listMatrixToArr matrix
-  }
+problem = Problem 83 "Path sum: four ways" (bfs $ listMatrixToArr matrix)
 
 bfs :: Array Int (Array Int Integer) -> Integer
 bfs arr = helper [((0, 0), arr !!? (0, 0))] M.empty

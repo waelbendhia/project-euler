@@ -10,10 +10,9 @@ import Problem
 problem :: Problem Integer
 problem =
   Problem
-  { ind = 100
-  , name = "Arranged probability"
-  , solution = fst $ head $ dropWhile ((< 10 ^ 12) . snd) solutions'
-  }
+    100
+    "Arranged probability"
+    (fst $ head $ dropWhile ((< 10 ^ 12) . snd) solutions')
 
 solvePolynomial :: Integral t => t -> t -> t -> Maybe t
 solvePolynomial a b c = do

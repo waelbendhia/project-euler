@@ -7,10 +7,9 @@ import Problem
 problem :: Problem Integer
 problem =
   Problem
-  { ind = 55
-  , name = "Lychrel numbers"
-  , solution = toInteger $ length $ filter lychrel [1 .. 10000]
-  }
+    55
+    "Lychrel numbers"
+    (toInteger $ length $ filter lychrel [1 .. 10000])
 
 lychrel :: (Read a1, Show a1, Num a1) => a1 -> Bool
 lychrel n = helper 0 n
