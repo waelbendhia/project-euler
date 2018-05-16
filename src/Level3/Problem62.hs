@@ -12,10 +12,10 @@ problem =
   Problem
     62
     "Cubic permutations"
-    (fromMaybe 0 $ fmap head $ findCubicPermutationsOfLength 5)
+    (maybe 0 head $ findCubicPermutationsOfLength 5)
 
 findCubicPermutationsOfLength :: Int -> Maybe [Integer]
-findCubicPermutationsOfLength l = helper [] (cubes)
+findCubicPermutationsOfLength l = helper [] cubes
   where
     helper list cubs
       | length list == l = Just list
@@ -35,7 +35,7 @@ isEmpty (_:_) = False
 findCubeWithSameDigits :: Integer -> Integer -> [Integer]
 findCubeWithSameDigits a lowerBound =
   filter (sameDigits a) $
-  takeWhile ((== numDigits a) . numDigits) $ dropWhile (<= lowerBound) $ cubes
+  takeWhile ((== numDigits a) . numDigits) $ dropWhile (<= lowerBound) cubes
 
 sameDigits :: Show a => a -> a -> Bool
 sameDigits a b = getDigits a == getDigits b

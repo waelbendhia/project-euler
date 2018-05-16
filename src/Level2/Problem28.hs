@@ -15,5 +15,5 @@ spiralDiagonals n = spiralDiag [1]
       | otherwise = spiralDiag (nextTerm : l)
       where
         nextTerm = calcNextTerm l
-        step = (ceiling ((toRational $ length l) / 4)) * 2
+        step = ceiling (toRational (length l) / 4) * 2
         calcNextTerm l' = step + head l'

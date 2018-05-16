@@ -12,24 +12,23 @@ problem =
   Problem
     206
     "Concealed Square"
-    (fromMaybe 0 $ fmap wholeRoot $ findSquareForShape "1_2_3_4_5_6_7_8_9_0")
+    (maybe 0 wholeRoot $ findSquareForShape "1_2_3_4_5_6_7_8_9_0")
 
-findSquareForShape :: [Char] -> Maybe Integer
+findSquareForShape :: String -> Maybe Integer
 findSquareForShape shape =
   find (validateShape shape) $
-  map (^ 2) $ [wholeRoot lo,wholeRoot lo + 10 .. wholeRoot hi]
+  map (^ 2) [wholeRoot lo,wholeRoot lo + 10 .. wholeRoot hi]
   where
     (lo, hi) = rangeFromShape shape
 
-validateShape :: Show t => [Char] -> t -> Bool
+validateShape :: Show t => String -> t -> Bool
 validateShape shape num =
-  if length shape == length numStr
-    then all (\(n, s) -> s == '_' || n == s) $ zip numStr shape
-    else False
+  (length shape == length numStr) &&
+  all (\(n, s) -> s == '_' || n == s) (zip numStr shape)
   where
     numStr = show num
 
-rangeFromShape :: [Char] -> (Integer, Integer)
+rangeFromShape :: String -> (Integer, Integer)
 rangeFromShape shape = (lo, hi)
   where
     replace c '_' = c

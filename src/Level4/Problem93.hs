@@ -12,8 +12,7 @@ problem =
     93
     "Arithmetic expressions"
     (read $
-     map intToDigit $
-     map truncate $
+     map (intToDigit . truncate) $
      fst $
      maximumBy (\(_, a) (_, b) -> compare a b) $
      map
@@ -47,10 +46,10 @@ allResults [] = []
 allResults [a, b] = nub $ sort $ a * b : a + b : divs a b ++ subs a b
 allResults l =
   nub $
-  sort $
-  (do a <- l
-      b <- allResults $ delete a l
-      allResults [a, b])
+  sort
+    (do a <- l
+        b <- allResults $ delete a l
+        allResults [a, b])
 
 getConsecutive :: (Num a, Eq a) => [a] -> [a]
 getConsecutive [] = []

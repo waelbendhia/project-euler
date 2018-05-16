@@ -21,7 +21,7 @@ findNthPermutation n s =
     else (s !! steps) :
          findNthPermutation remainder (filter (/= (s !! steps)) s)
   where
-    step = factorial $ (length s) - 1
+    step = factorial $ length s - 1
     steps = quot n step
     remainder = mod n step
 

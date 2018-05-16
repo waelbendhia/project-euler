@@ -16,7 +16,7 @@ problem =
 
 solvePolynomial :: Integral t => t -> t -> t -> Maybe t
 solvePolynomial a b c = do
-  d <- safeSqrt $ discriminant
+  d <- safeSqrt discriminant
   safeDiv
     (if d > b
        then d - b
@@ -40,7 +40,7 @@ safeDiv a b =
     else Nothing
 
 findFirstCombination :: Integral a => a -> Maybe a
-findFirstCombination bound = find ((/= Nothing) . blueBalls) $ [bound ..]
+findFirstCombination bound = find (isJust . blueBalls) [bound ..]
 
 blueBalls :: Integral t => t -> Maybe t
 blueBalls total = solvePolynomial 2 (-2) (total - (total ^ 2))

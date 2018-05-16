@@ -7,9 +7,7 @@ import Data.Char
 import Problem
 
 problem :: Problem Integer
-problem =
-  Problem
-  {ind = 112, name = "Bouncy Number", solution = findPercentageOfBouncy 99}
+problem = Problem 112 "Bouncy Number" (findPercentageOfBouncy 99)
 
 isIncreasing :: (Show a, Integral a) => a -> Bool
 isIncreasing = helper . map digitToInt . show
@@ -18,10 +16,7 @@ isIncreasing = helper . map digitToInt . show
       case l of
         [] -> True
         [_] -> True
-        x1:x2:xs ->
-          if x1 <= x2
-            then helper (x2 : xs)
-            else False
+        x1:x2:xs -> (x1 <= x2) && helper (x2 : xs)
 
 isDecreasing :: (Show a, Integral a) => a -> Bool
 isDecreasing = helper . map digitToInt . show
@@ -30,10 +25,7 @@ isDecreasing = helper . map digitToInt . show
       case l of
         [] -> True
         [_] -> True
-        x1:x2:xs ->
-          if x1 >= x2
-            then helper (x2 : xs)
-            else False
+        x1:x2:xs -> (x1 >= x2) && helper (x2 : xs)
 
 isBouncy :: (Integral a, Show a) => a -> Bool
 isBouncy num = not (isDecreasing num || isIncreasing num)
@@ -42,7 +34,7 @@ findPercentageOfBouncy :: (Integral t, Integral a, Show a) => t -> a
 findPercentageOfBouncy pct = helper 1 0 0
   where
     checkPct bouncy total =
-      total > 0 && (fromIntegral pct) * ((fromIntegral total) / 100) <= bouncy
+      total > 0 && fromIntegral pct * (fromIntegral total / 100) <= bouncy
     helper x bouncy total
       | checkPct bouncy total = x - 1
       | otherwise =

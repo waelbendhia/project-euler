@@ -29,7 +29,7 @@ remConsDup :: Eq a => [a] -> [a]
 remConsDup =
   foldl
     (\p c ->
-       if length p > 0 && head p == c
+       if not (null p) && head p == c
          then p
          else c : p)
     []

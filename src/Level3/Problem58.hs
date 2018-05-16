@@ -16,10 +16,7 @@ sideLengthForRatioUnder n d = div (minLength - 1) 2 + 1
     helper ps ns (x1:x2:x3:x4:xs) =
       if ns > 1 && ps * d < ns * n
         then ns
-        else helper
-               (ps + (length $ filter isPrime [x1, x2, x3, x4]))
-               (ns + 4)
-               xs
+        else helper (ps + length (filter isPrime [x1, x2, x3, x4])) (ns + 4) xs
 
 spiralDiagonals :: [Integer]
-spiralDiagonals = scanl (+) 1 $ concatMap (replicate 4) $ map (* 2) [1 ..]
+spiralDiagonals = scanl (+) 1 $ concatMap (replicate 4 . (* 2)) [1 ..]

@@ -16,10 +16,10 @@ isCircularPrime :: Int -> Bool
 isCircularPrime = all' isPrime . loop
 
 all' :: Foldable t => (a -> Bool) -> t a -> Bool
-all' f l = length l /= 0 && all f l
+all' f l = not (null l) && all f l
 
 containsZero :: Int -> Bool
-containsZero = any ((==) '0') . show
+containsZero = elem '0' . show
 
 loop :: Int -> [Int]
 loop n =

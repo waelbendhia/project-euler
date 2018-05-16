@@ -11,7 +11,7 @@ problem = Problem 89 "Roman numerals" (toInteger $ sum $ map savedChars numbers)
 -- The easiest to solve this problem would have been to replace all sub-optimal 
 -- forms (IIII, IIIII, etc...) of numbers with their with two spaces and then 
 -- count the string length difference, but writing converters seemed more fun.
-savedChars :: [Char] -> Int
+savedChars :: String -> Int
 savedChars n = length n - length (intToMinimalRomanNumeral $romanNumerToInt n)
 
 romanCharToInt :: Num t => Char -> t
@@ -35,7 +35,7 @@ intToRomanChar 1000 = 'M'
 intToRomanChar x =
   error $ "'" ++ show x ++ "'" ++ " cannot be converted to roman char."
 
-romanNumerToInt :: (Num a, Eq a) => [Char] -> a
+romanNumerToInt :: (Num a, Eq a) => String -> a
 romanNumerToInt s = helper $ map romanCharToInt s
   where
     helper [] = 0
@@ -45,12 +45,11 @@ romanNumerToInt s = helper $ map romanCharToInt s
         then n2 - n1 + helper ns
         else n1 + helper (n2 : ns)
 
-intToMinimalRomanNumeral :: Int -> [Char]
+intToMinimalRomanNumeral :: Int -> String
 intToMinimalRomanNumeral =
-  concat .
-  reverse . map (uncurry multByPower10) . zip [0 ..] . map minRep . splitN
+  concat . reverse . zipWith multByPower10 [0 ..] . map minRep . splitN
 
-multByPower10 :: Integral a => a -> [Char] -> [Char]
+multByPower10 :: Integral a => a -> String -> String
 multByPower10 p c =
   if p < 3
     then concatMap ((: []) . intToRomanChar . (10 ^ p *) . romanCharToInt) c
@@ -62,7 +61,7 @@ splitN n =
     then [n]
     else rem n 10 : splitN (div n 10)
 
-minRep :: Int -> [Char]
+minRep :: Int -> String
 minRep 4 = "IV"
 minRep 9 = "IX"
 minRep n = replicate (div n 5) 'V' ++ replicate (mod n 5) 'I'

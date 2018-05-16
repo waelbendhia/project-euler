@@ -5,15 +5,13 @@ module Level2.Problem44
 import Problem
 
 problem :: Problem Integer
-problem = Problem 44 "Pentagon numbers" (subT $ head $ allSuperPentagonal)
+problem = Problem 44 "Pentagon numbers" (subT $ head allSuperPentagonal)
 
 allSuperPentagonal :: [(Integer, Integer)]
 allSuperPentagonal =
   filter ((/= Nothing) . pentagonalTerm . subT) $
   filter ((/= Nothing) . pentagonalTerm . addT) $
-  concatMap
-    (\a -> map ((,) (pentagonalN a)) (map pentagonalN [1 .. a - 1]))
-    [1 ..]
+  concatMap (\a -> map ((,) (pentagonalN a) . pentagonalN) [1 .. a - 1]) [1 ..]
 
 subT :: Num a => (a, a) -> a
 subT (a, b) = abs (a - b)
@@ -23,11 +21,9 @@ addT (a, b) = a + b
 
 intSqrt :: Integral a => a -> Maybe a
 intSqrt n =
-  if n < 0
-    then Nothing
-    else if root ^ 2 == n
-           then Just root
-           else Nothing
+  if n >= 0 && root ^ 2 == n
+    then Just root
+    else Nothing
   where
     root = truncate $ sqrt $ fromIntegral n
 

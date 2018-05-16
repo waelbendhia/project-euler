@@ -17,14 +17,14 @@ capitalS n = helper primes
     helper [] = 0
     helper (p:ps)
       | p * p <= n =
-        (sum $ capitalM' p <$> takeWhile ((<= n) . (* p)) ps) + helper ps
+        sum (capitalM' p <$> takeWhile ((<= n) . (* p)) ps) + helper ps
       | otherwise = 0
 
 capitalM :: (Num p, Ord p) => p -> p -> p -> p
 capitalM p q n =
-  if length ns > 0
+  if not (null ns)
     then maximum ns
     else 0
   where
     ps = takeWhile (<= n) $ map (p ^) [1 ..]
-    ns = ps >>= \p' -> takeWhile (<= n) $ ((p' *) . (q ^)) <$> [1 ..]
+    ns = ps >>= \p' -> takeWhile (<= n) $ (p' *) . (q ^) <$> [1 ..]

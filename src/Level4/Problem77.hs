@@ -29,5 +29,5 @@ primeSummationsFor val =
     helper [] _ memo = memo
     helper (n:ns) v memo =
       if v > val
-        then helper (ns) 0 memo
+        then helper ns 0 memo
         else helper (n : ns) (v + 1) $ M.insertWith (+) v (memo !? (v - n)) memo

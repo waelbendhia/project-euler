@@ -29,5 +29,5 @@ primesProducedBy a b = l 0
   where
     f n = (n ^ 2) + a * n + b
     l n
-      | isPrime (f n) = (f n) : l (n + 1)
+      | isPrime (f n) = f n : l (n + 1)
       | otherwise = []

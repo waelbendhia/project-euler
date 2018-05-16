@@ -20,12 +20,12 @@ problem =
 -- I used progressive deepening as I couldn't figure out a way to provide a
 -- bound for the search space.
 firstPartitionDivisibleBy :: Integral t => t -> Int
-firstPartitionDivisibleBy n = helper (10)
+firstPartitionDivisibleBy n = helper 10
   where
     helper r =
-      if length res == 0
+      if null res
         then helper (r * 10)
-        else fst $ head $ res
+        else fst $ head res
       where
         res =
           filter (divisibleBy n . fromIntegral . snd) $

@@ -18,7 +18,7 @@ findMatchingSumOfDigitPowers p =
   filter (isSumOfDigitPowers p) [2 .. upperBound p]
 
 isSumOfDigitPowers :: Integral b => b -> Int -> Bool
-isSumOfDigitPowers p n = n == (sum $ digitPowers p n)
+isSumOfDigitPowers p n = n == sum (digitPowers p n)
 
 digitPowers :: (Show a, Integral b) => b -> a -> [Int]
 digitPowers n = map ((^ n) . digitToInt) . show

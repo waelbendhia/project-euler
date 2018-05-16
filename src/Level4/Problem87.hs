@@ -36,7 +36,7 @@ countPrimePowers n =
     pr = V.fromList $ takeWhile (< b) primes
 
 bound :: Integer -> Integer
-bound = truncate . sqrt . fromIntegral . (subtract 2)
+bound = truncate . sqrt . fromIntegral . subtract 2
 
 toThruple :: Integral t => t -> t -> (t, t, t)
 toThruple b i = (x, y, z)
@@ -50,7 +50,4 @@ skip b i = i + (b - i `mod` b)
 
 unfoldS :: Ord a => (t -> Maybe (Maybe a, t)) -> S.Set a -> t -> S.Set a
 unfoldS f s i =
-  fromMaybe s $
-  fmap
-    (\(x, nextI) -> unfoldS f (fromMaybe s $ fmap (flip S.insert s) $ x) nextI) $
-  f i
+  maybe s (\(x, nextI) -> unfoldS f (maybe s (`S.insert` s) x) nextI) $ f i

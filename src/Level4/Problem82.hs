@@ -27,7 +27,7 @@ minPathSum arr = minimum $ helper 0
     yRange = [fst yBounds .. snd yBounds]
     helper x =
       case arr !!? x of
-        Nothing -> listArray yBounds $ cycle [0]
+        Nothing -> listArray yBounds $ repeat 0
         Just thisCol ->
           listArray yBounds $
           map

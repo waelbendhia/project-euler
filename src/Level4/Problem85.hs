@@ -7,9 +7,7 @@ import Data.List
 import Problem
 
 problem :: Problem Integer
-problem =
-  Problem
-  {ind = 85, name = "Counting rectangles", solution = findClosest 2000000}
+problem = Problem 85 "Counting rectangles" (findClosest 2000000)
 
 findClosest :: Integral b => b -> b
 findClosest cRect =

@@ -27,36 +27,34 @@ import Problem
 -- for all i sum of xij is 1 for each j == 1
 -- This satisfies all the constraints of the problem
 problem :: Problem Integer
-problem =
-  Problem {ind = 345, name = "Matrix Sum", solution = solveMatrix problemMatrix}
+problem = Problem 345 "Matrix Sum" (solveMatrix problemMatrix)
 
-indexMatrix :: [[a]] -> [[(a, [Char])]]
+indexMatrix :: [[a]] -> [[(a, String)]]
 indexMatrix m = uncurry indexLine <$> addI m
   where
     addI = zip [1 ..]
     indexLine i = fmap (uncurry $ indexVal i) . addI
     indexVal i j v = (v, "x" ++ show i ++ show j)
 
-matrixToObjectiveFunction :: Additive r => [[r]] -> LinFunc [Char] r
+matrixToObjectiveFunction :: Additive r => [[r]] -> LinFunc String r
 matrixToObjectiveFunction = linCombination . concat . indexMatrix
 
-linearProbFromMatrix :: (Ord c, Group c, Num c) => [[c]] -> LP [Char] c
+linearProbFromMatrix :: (Ord c, Group c, Num c) => [[c]] -> LP String c
 linearProbFromMatrix m =
   execLPM $ do
     setDirection Max
     let indexedM = indexMatrix m
-    setObjective $ linCombination $ concat $ indexedM
-    forM_ (indexedM >>= fmap snd) (flip varGeq 0)
-    forM_ (indexedM >>= fmap snd) (flip setVarKind IntVar)
-    let constrainedM = fmap (((,) 1) . snd) <$> indexedM
+    setObjective $ linCombination $ concat indexedM
+    forM_ (indexedM >>= fmap snd) (`varGeq` 0)
+    forM_ (indexedM >>= fmap snd) (`setVarKind` IntVar)
+    let constrainedM = fmap ((,) 1 . snd) <$> indexedM
     forM_
       (linCombination <$> constrainedM ++ transpose constrainedM)
-      (flip leqTo 1)
+      (`leqTo` 1)
 
 solveMatrix :: (Prelude.Integral p, Group c, Real c) => [[c]] -> p
 solveMatrix =
-  fromMaybe 0 .
-  fmap (truncate . fst) .
+  maybe 0 (truncate . fst) .
   snd .
   unsafePerformIO . silence . glpSolveVars mipDefaults . linearProbFromMatrix
 

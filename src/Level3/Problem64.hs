@@ -18,13 +18,13 @@ periodLength = length . snd . fractionalExpansion
 
 fractionalExpansion :: Integer -> (Integer, [Integer])
 fractionalExpansion x =
-  if (wholeRoot x) ^ 2 == x
+  if wholeRoot x ^ 2 == x
     then (x, [])
     else (head expansion, tail expansion)
   where
     expansion = map trd $ reverse $ helper [] Nothing
     helper [] _ = helper [(0, 1, wholeRoot x)] Nothing
-    helper (l@((m, d, a):_)) first =
+    helper l@((m, d, a):_) first =
       if Just (mn, dn) == first
         then l
         else helper (newTerm : l) stopCondition

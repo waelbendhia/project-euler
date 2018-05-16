@@ -13,14 +13,14 @@ problem =
     "Coded triangle numbers"
     (toInteger $ length $ filter isTriangleWord wordsList)
 
-isTriangleWord :: [Char] -> Bool
+isTriangleWord :: String -> Bool
 isTriangleWord = (/= Nothing) . triangleTerm . wordValue
 
-wordValue :: [Char] -> Int
+wordValue :: String -> Int
 wordValue = sum . map alphabetPosition
 
 alphabetPosition :: Char -> Int
-alphabetPosition = (+ 1) . (flip (-) $ (ord 'A')) . ord . toUpper
+alphabetPosition = (+ 1) . flip (-) (ord 'A') . ord . toUpper
 
 triangleTerm :: Integral t => t -> Maybe t
 triangleTerm n =
@@ -38,10 +38,8 @@ triangleTerm n =
 
 intSqrt :: Integral a => a -> Maybe a
 intSqrt n =
-  if n < 0
-    then Nothing
-    else if root ^ 2 == n
-           then Just root
-           else Nothing
+  if n >= 0 && root ^ 2 == n
+    then Just root
+    else Nothing
   where
     root = truncate $ sqrt $ fromIntegral n

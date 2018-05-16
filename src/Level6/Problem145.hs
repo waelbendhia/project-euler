@@ -21,5 +21,5 @@ numReversibleWithNDigits n
   | n <= 1 = 0
   | even n = (20 * 30 ^ (n `div` 2 - 1)) + numReversibleWithNDigits (n - 1)
   | n `rem` 4 == 1 =
-    (100 * 500 ^ (max 0 $ n `div` 4 - 1)) + numReversibleWithNDigits (n - 1)
+    (100 * 500 ^ max 0 (n `div` 4 - 1)) + numReversibleWithNDigits (n - 1)
   | otherwise = numReversibleWithNDigits (n - 1)

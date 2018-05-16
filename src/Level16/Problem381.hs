@@ -35,7 +35,7 @@ sumCapitalS :: Integral a => a -> a
 sumCapitalS n = sum $ map capitalS $ takeWhile (< n) $ drop 2 primes
 
 capitalS :: Integral a => a -> a
-capitalS p = (-3 * (fromMaybe 0 $ modInv 8 p)) `mod` p
+capitalS p = (-3 * fromMaybe 0 (modInv 8 p)) `mod` p
 
 -- This is the first algorithm I implemented which works okay enough up to 10^5
 -- sumCapitalS :: Integral p => p -> p

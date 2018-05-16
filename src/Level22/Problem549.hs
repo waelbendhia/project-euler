@@ -65,7 +65,7 @@ smallestPrimePower isP n = (spf, f (n `div` spf) 1)
 kempPrimePower :: Integer -> Integer -> Integer
 kempPrimePower p e
   | e <= p = p * e
-  | otherwise = (p - 1) * e + (sum $ ks (e `quot` a v) (v - 1) (e `rem` a v))
+  | otherwise = (p - 1) * e + sum (ks (e `quot` a v) (v - 1) (e `rem` a v))
   where
     v = floor $ logBase (fromIntegral p) $ fromIntegral $ 1 + e * (p - 1)
     a n = (p ^ n - 1) `quot` (p - 1)

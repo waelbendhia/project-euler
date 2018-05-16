@@ -4,7 +4,7 @@ module Level1.Problem22Names
 
 import Data.List
 
-names :: [[Char]]
+names :: [String]
 names =
   sort
     [ "MARY"

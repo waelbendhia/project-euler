@@ -21,24 +21,22 @@ problem =
 produces :: (Num a, Eq a, Foldable t) => t a -> [a] -> [a] -> Bool
 produces ns d1 d2 =
   (length ns ==) $
-  length $ nub $ filter (\x -> any (== x) ns) $ allNumbersProducedBy d1 d2
+  length $ nub $ filter (`elem` ns) $ allNumbersProducedBy d1 d2
 
 allDice :: (Enum a, Num a) => Int -> [[a]]
 allDice sides = filter ((== sides) . length) $ subsequences [0 .. 9]
 
 allCubesUnder :: (Enum a, Ord a, Num a) => a -> [a]
-allCubesUnder n = takeWhile (< n) $ map (^ 2) $ [1 ..]
+allCubesUnder n = takeWhile (< n) $ map (^ 2) [1 ..]
 
 allNumbersProducedBy :: (Eq a, Num a) => [a] -> [a] -> [a]
 allNumbersProducedBy d1 d2 =
   [10 * s1 + s2 | s1 <- d1', s2 <- d2'] ++ [10 * s2 + s1 | s1 <- d1', s2 <- d2']
   where
-    extend d =
-      if any (== 6) d
-        then 9 : d
-        else if any (== 9) d
-               then 6 : d
-               else d
+    extend d
+      | 6 `elem` d = 9 : d
+      | 9 `elem` d = 6 : d
+      | otherwise = d
     d1' = extend d1
     d2' = extend d2
 

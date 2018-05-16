@@ -2,6 +2,7 @@ module Level2.Problem46
   ( problem
   ) where
 
+import Data.Maybe
 import Data.Numbers.Primes
 import Problem
 
@@ -14,18 +15,16 @@ problem =
 
 isGoldbachNum :: Integral a => a -> Bool
 isGoldbachNum n =
-  any (\p -> (intDiv (n - p) 2 >>= intSqrt) /= Nothing) $ takeWhile (< n) primes
+  any (\p -> isJust (intDiv (n - p) 2 >>= intSqrt)) $ takeWhile (< n) primes
 
 oddComposites :: [Integer]
 oddComposites = filter (not . isPrime) [9,11 ..]
 
 intSqrt :: Integral a => a -> Maybe a
 intSqrt n =
-  if n < 0
-    then Nothing
-    else if root ^ 2 == n
-           then Just root
-           else Nothing
+  if n >= 0 && root ^ 2 == n
+    then Just root
+    else Nothing
   where
     root = truncate $ sqrt $ fromIntegral n
 

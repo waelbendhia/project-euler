@@ -12,7 +12,7 @@ problem :: Problem Integer
 problem = Problem 81 "Path sum: two ways" (minPathSum $ listMatrixToArr matrix)
 
 minPathSum :: (Ord a1, Num a1, Num a, Ix a) => Array a (Array a a1) -> a1
-minPathSum arr = (helper (1, 1) M.empty) M.! (1, 1)
+minPathSum arr = helper (1, 1) M.empty M.! (1, 1)
   where
     helper c@(x, y) memo =
       if M.member c memo

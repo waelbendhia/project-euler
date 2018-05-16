@@ -17,7 +17,7 @@ problem =
 sumNDigitsRoot :: Integer -> Integer -> Int
 sumNDigitsRoot = ((sum . map digitToInt) .) . nDigitsRoot
 
-nDigitsRoot :: (Integral b, Integral a, Show a) => b -> a -> [Char]
+nDigitsRoot :: (Integral b, Integral a, Show a) => b -> a -> String
 nDigitsRoot n = take 100 . show . newtonRoot . (* 10 ^ (2 * n))
 
 newtonRoot :: Integral a => a -> a
@@ -32,4 +32,4 @@ wholeRoot :: Integer -> Integer
 wholeRoot = truncate . sqrt . fromInteger
 
 isSquare :: Integer -> Bool
-isSquare x = (wholeRoot x) ^ 2 == x
+isSquare x = wholeRoot x ^ 2 == x

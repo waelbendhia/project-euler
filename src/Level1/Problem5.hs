@@ -5,8 +5,7 @@ module Level1.Problem5
 import Problem
 
 problem :: Problem Integer
-problem =
-  Problem {ind = 5, name = "Smallest multiple", solution = smallestMultiple 20}
+problem = Problem 5 "Smallest multiple" (smallestMultiple 20)
 
 smallestMultiple :: Integral p => p -> p
 smallestMultiple 0 = 1
@@ -19,4 +18,4 @@ smallestMultiple n =
             | x * x > m = []
             | m `rem` x == 0 = x : divs (x + 1)
             | otherwise = divs (x + 1)
-      in divs 1 ++ [m]
+       in divs 1 ++ [m]

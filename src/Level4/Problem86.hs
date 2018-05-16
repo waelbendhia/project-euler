@@ -5,8 +5,7 @@ module Level4.Problem86
 import Problem
 
 problem :: Problem Integer
-problem =
-  Problem {ind = 86, name = "Cuboid Route", solution = firstAbove 1000000}
+problem = Problem 86 "Cuboid Route" (firstAbove 1000000)
 
 -- The basic idea is to fix a the width of the cuboid and then check all
 -- values 2 <= v <= w for which sqrt(w^2+v^2) is an integer.
@@ -38,8 +37,6 @@ numberOfIntCuboidsProduced w = helper 2
         (if w * 2 == hl
            then 0
            else helper (hl + 1))
-      where
-
 
 intSqrt :: Integral a => a -> Bool
-intSqrt r = (truncate $ sqrt $ fromIntegral r) ^ 2 == r
+intSqrt r = truncate (sqrt $ fromIntegral r) ^ 2 == r

@@ -19,7 +19,7 @@ numDivisors n =
   (if isCube
      then 1
      else 2) +
-  2 * (fromIntegral $ length $ divs)
+  2 * fromIntegral (length divs)
   where
     isCube = root ^ 2 == n
     root = intSqrt n

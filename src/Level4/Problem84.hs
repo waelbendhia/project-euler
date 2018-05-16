@@ -2,6 +2,7 @@ module Level4.Problem84
   ( problem
   ) where
 
+import Control.Monad
 import Data.List
 import System.Random
 
@@ -125,19 +126,17 @@ playTurn gs =
 playGame :: (Num t, Eq t) => (Int, Int) -> t -> Int -> [(Int, Tiles)]
 playGame dRange turns s =
   map ((board !!) . position) $
-  unfoldr
-    (\gs -> playTurn gs >>= (\gs' -> return (gs', gs')))
-    (initGame dRange turns s)
+  unfoldr (playTurn >=> (\gs' -> return (gs', gs'))) (initGame dRange turns s)
 
-modal :: Show a => [a] -> [Char]
+modal :: Show a => [a] -> String
 modal l =
-  concat $
-  map
-    (\s ->
-       if length s < 2
-         then '0' : s
-         else s) $
-  map show $ take 3 l
+  concatMap
+    ((\s ->
+        if length s < 2
+          then '0' : s
+          else s) .
+     show) $
+  take 3 l
 
 statisticsForGame ::
      (Eq t, Num t) => (Int, Int) -> t -> Int -> [((Int, Tiles), Int)]
@@ -224,7 +223,7 @@ cardName :: Tiles -> String
 cardName (Normal s) = s
 cardName _ = ""
 
-getTileByName :: [Char] -> (Int, Tiles)
+getTileByName :: String -> (Int, Tiles)
 getTileByName n = head res
   where
     res = filter ((n ==) . cardName . snd) $ cycle board
@@ -256,8 +255,8 @@ rollDice (lo, hi) g = (rolled, nextG)
 generateRandNumbers ::
      (RandomGen t, Num t1, Eq t1) => t1 -> (Int, Int) -> t -> ([Int], t)
 generateRandNumbers n range g =
-  ( map fst $ res
-  , if length res > 0
+  ( map fst res
+  , if not (null res)
       then snd $ head res
       else g)
   where

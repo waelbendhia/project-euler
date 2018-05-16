@@ -18,7 +18,7 @@ nthConvergentOfe :: (Enum a, Num a, Num t) => Int -> (t, [a])
 nthConvergentOfe n = (2, take (n - 1) expansionOfe)
   where
     expansionOfe =
-      zipWith ($) (cycle [\_ -> 1, (* 2), \_ -> 1]) $
+      zipWith ($) (cycle [const 1, (* 2), const 1]) $
       concatMap (replicate 3) [1 ..]
 
 fractionFromConvergent :: Integral t => (t, [t]) -> (t, t)

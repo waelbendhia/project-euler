@@ -7,13 +7,11 @@ import Data.List
 import Problem
 
 problem :: Problem Integer
-problem =
-  Problem
-  {ind = 79, name = "Passcode derivation", solution = read $ crack logins}
+problem = Problem 79 "Passcode derivation" (read $ crack logins)
 
 -- Build a graph from all passcodes and then progressively remove vertices
 -- with indegree == 0
-crack :: [[Char]] -> [Char]
+crack :: [String] -> String
 crack attempts = helper vertices edges
   where
     helper [] _ = []
@@ -28,17 +26,17 @@ crack attempts = helper vertices edges
 isOnlyOutVertex :: (Eq a1, Foldable t) => t (a, a1) -> a1 -> Bool
 isOnlyOutVertex g v = all ((/= v) . snd) g
 
-digitsFromAttempts :: [[Char]] -> [Char]
+digitsFromAttempts :: [String] -> String
 digitsFromAttempts = map head . group . sort . concat
 
 removeVertex :: Char -> [(Char, Char)] -> [(Char, Char)]
 removeVertex v = filter ((/= v) . snd) . filter ((/= v) . fst)
 
-edgesFromAttempts :: [[Char]] -> [(Char, Char)]
+edgesFromAttempts :: [String] -> [(Char, Char)]
 edgesFromAttempts [] = []
 edgesFromAttempts ([a, b, c]:keys) = [(a, b), (b, c)] ++ edgesFromAttempts keys
 
-logins :: [[Char]]
+logins :: [String]
 logins =
   [ "319"
   , "680"

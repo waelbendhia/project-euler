@@ -11,16 +11,14 @@ import qualified Data.Vector as V
 -- import Level4.Problem96Puzzles
 -- import Problem
 -- problem :: Problem Integer
--- problem =
---   Problem
---   {ind = 96, name = "Su Doku", solution = sum $ map solve $ map mPuzzle puzzles}
+-- problem = Problem 96 "Su Doku" (sum $ map solve $ map mPuzzle puzzles)
 mPuzzle = fromLists . initializePuzzle
 
 solve m
   | isSolved m =
     read $
     map (intToDigit . fromIntegral) $ concat $ take 3 $ V.toList $ getRow 1 m
-  | doIteration m == m = error $ "stuck:\n" ++ (show m)
+  | doIteration m == m = error $ "stuck:\n" ++ show m
   | otherwise = solve $ doIteration m
 
 isSolved = V.all ((== 1) . length) . V.take 3 . getRow 1
@@ -78,9 +76,9 @@ checkBlock p (bx, by) =
   toList $ submatrix (1 + by * 3) (by * 3 + 3) (1 + bx * 3) (bx * 3 + 3) p
 
 checkPuzzle p =
-  (and $ map (checkCol p) [1 .. 9]) &&
-  (and $ map (checkRow p) [1 .. 9]) &&
-  (and $ map (checkBlock p) [(x, y) | x <- [0 .. 2], y <- [0 .. 2]])
+  all (checkCol p) [1 .. 9] &&
+  all (checkRow p) [1 .. 9] &&
+  all (checkBlock p) [(x, y) | x <- [0 .. 2], y <- [0 .. 2]]
 
 -- bruteForce p = 
 initializePuzzle =
@@ -126,16 +124,9 @@ clearLine = helper 1
         removeDefinitesFrom cs =
           filter
             (\x ->
-               not $
-               any (== x) $
-               concatMap
-                 (\d ->
-                    if shouldFilter cs d
-                      then [d]
-                      else [])
-                 definites)
+               notElem x $ concatMap (\d -> [d | shouldFilter cs d]) definites)
             cs
-        shouldFilter cs x = not $ (length cs <= n && any (== x) cs)
+        shouldFilter cs x = not (length cs <= n && elem x cs)
         definites =
           concat $
           concat $

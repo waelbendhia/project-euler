@@ -7,9 +7,7 @@ import Problem
 import Data.Matrix
 
 problem :: Problem Integer
-problem =
-  Problem
-  {ind = 11, name = "Largest product in a grid", solution = solver 4 theMatrix}
+problem = Problem 11 "Largest product in a grid" (solver 4 theMatrix)
 
 solver :: (Num b, Ord b) => Int -> Matrix b -> b
 solver = ((foldl max 0 . map highestProductFrom) .) . allSubmatricesOfSize
@@ -27,20 +25,19 @@ prodAllRows m = prod' 1
     prod' n =
       if n > nrows m
         then []
-        else (foldl (*) 1 $ getRow n m) : prod' (n + 1)
+        else product (getRow n m) : prod' (n + 1)
 
 highestProductFrom :: (Num b, Ord b) => Matrix b -> b
 highestProductFrom m =
   foldl max 0 $
-  [diagProd m, inverseDiagProd m] ++
-  (prodAllRows m) ++ (prodAllRows $ transpose m)
+  [diagProd m, inverseDiagProd m] ++ prodAllRows m ++ prodAllRows (transpose m)
 
 inverseDiagProd :: Num a => Matrix a -> a
 inverseDiagProd m = diagProd $ flip 1 m
   where
     flip n m
-      | n > (quot (nrows m) 2) = m
-      | otherwise = flip (n + 1) (switchRows n ((nrows m) - n + 1) m)
+      | n > quot (nrows m) 2 = m
+      | otherwise = flip (n + 1) (switchRows n (nrows m - n + 1) m)
 
 theMatrix :: Matrix Integer
 theMatrix =

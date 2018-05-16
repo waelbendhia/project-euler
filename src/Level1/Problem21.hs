@@ -20,4 +20,4 @@ divisors n = filter (/= n) $ filtered ++ map (quot n) filtered
     intSqrt = truncate . sqrt . fromIntegral
 
 isAmicable :: Integer -> Bool
-isAmicable x = (sumDivisors $ sumDivisors x) == x && sumDivisors x /= x
+isAmicable x = sumDivisors (sumDivisors x) == x && sumDivisors x /= x

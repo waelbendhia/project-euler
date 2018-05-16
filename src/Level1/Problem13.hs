@@ -5,7 +5,7 @@ module Level1.Problem13
 import Problem
 
 problem :: Problem Integer
-problem = Problem {ind = 13, name = "Large sum", solution = solver}
+problem = Problem 13 "Large sum" solver
 
 solver :: Integer
 solver = read $ take 10 $ show $ sum theNumber

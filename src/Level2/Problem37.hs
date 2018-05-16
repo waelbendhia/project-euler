@@ -7,9 +7,7 @@ import qualified Data.Set as S
 import Problem
 
 problem :: Problem Integer
-problem =
-  Problem
-  {ind = 37, name = "Truncatable primes", solution = sum $ truncatablePrimes}
+problem = Problem 37 "Truncatable primes" (sum truncatablePrimes)
 
 truncatablePrimes :: [Integer]
 truncatablePrimes =
@@ -39,4 +37,4 @@ numDigits :: Integer -> Integer
 numDigits = (+ 1) . truncate . logBase 10 . fromIntegral
 
 intSqrt :: (Integral a, Integral b) => a -> b
-intSqrt x = truncate $ sqrt $ (fromIntegral x :: Double)
+intSqrt x = truncate $ sqrt (fromIntegral x :: Double)

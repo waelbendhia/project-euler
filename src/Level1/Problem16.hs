@@ -6,8 +6,7 @@ import Data.Char
 import Problem
 
 problem :: Problem Integer
-problem =
-  Problem {ind = 16, name = "Power digit sum", solution = sumDigits (2 ^ 1000)}
+problem = Problem 16 "Power digit sum" (sumDigits (2 ^ 1000))
 
 sumDigits :: Integer -> Integer
 sumDigits = toInteger . sum . map digitToInt . show

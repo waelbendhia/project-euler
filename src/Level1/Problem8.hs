@@ -7,25 +7,24 @@ import Data.Char
 import Problem
 
 problem :: Problem Integer
-problem =
-  Problem {ind = 8, name = "Largest product in a series", solution = solver 13}
+problem = Problem 8 "Largest product in a series" (solver 13)
 
 solver :: Int -> Integer
 solver len = fromIntegral $ largestProductSequence theNumber len
 
-largestProductSequence :: [Char] -> Int -> Int
+largestProductSequence :: String -> Int -> Int
 largestProductSequence s len = lps' s len 0
   where
     lps' s len c
       | len > length s = c
       | otherwise = max (productSequence s len) (lps' (tail s) len c)
 
-productSequence :: [Char] -> Int -> Int
+productSequence :: String -> Int -> Int
 productSequence s len
   | len > length s = 0
-  | otherwise = foldl (*) 1 $ map digitToInt $ take len s
+  | otherwise = product $ map digitToInt $ take len s
 
-theNumber :: [Char]
+theNumber :: String
 theNumber =
   concat
     [ "73167176531330624919225119674426574742355349194934"

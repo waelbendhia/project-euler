@@ -9,10 +9,7 @@ import Problem
 
 problem :: Problem Integer
 problem =
-  Problem
-    60
-    "Prime pair sets"
-    (fromMaybe 0 $ fmap (toInteger . sum) $ dfsPrimeSet 5 1051)
+  Problem 60 "Prime pair sets" (maybe 0 (toInteger . sum) $ dfsPrimeSet 5 1051)
 
 -- We run a DFS with progressive deepening of the number of primes we are going
 -- to evaluate for prime sets. This algorithm takes a while to complete, but
@@ -22,8 +19,7 @@ problem =
 getFirstPrimeSetOf :: (Integral a, Show a) => Int -> ([a], Int)
 getFirstPrimeSetOf len = helper len
   where
-    helper b =
-      fromMaybe (helper (b + 1)) $ fmap (flip (,) b) $ dfsPrimeSet len b
+    helper b = maybe (helper (b + 1)) (flip (,) b) $ dfsPrimeSet len b
 
 dfsPrimeSet :: (Eq t, Integral a, Num t, Show a) => t -> Int -> Maybe [a]
 dfsPrimeSet len numPrimes = helper 0 0 primes'
@@ -31,16 +27,16 @@ dfsPrimeSet len numPrimes = helper 0 0 primes'
     helper depth val children =
       if depth == len
         then Just [val]
-        else (firstJust $
-              map
-                (\c ->
-                   helper (depth + 1) c $
-                   filter (primePair c) $ dropWhile (< c) children)
-                children) >>=
+        else firstJust
+               (map
+                  (\c ->
+                     helper (depth + 1) c $
+                     filter (primePair c) $ dropWhile (< c) children)
+                  children) >>=
              (if depth /= 0
                 then Just . (val :)
                 else Just)
-    primes' = 3 : (drop 3 $ take numPrimes primes)
+    primes' = 3 : drop 3 (take numPrimes primes)
 
 firstJust :: [Maybe a] -> Maybe a
 firstJust [] = Nothing

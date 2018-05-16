@@ -21,9 +21,9 @@ solve numColors ballsPerColor n =
       pickedP = 1 - notPickedP
       -- Multiply by number of colors and we get the expected number of
       -- distinct colors.
-   in (fromIntegral numColors) * pickedP
+   in fromIntegral numColors * pickedP
 
 binomialCoefficient :: Integer -> Integer -> Integer
-binomialCoefficient n k = (product $ map f [1 .. k]) `quot` (product [1 .. k])
+binomialCoefficient n k = product (map f [1 .. k]) `quot` product [1 .. k]
   where
     f i = n + 1 - i

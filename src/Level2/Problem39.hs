@@ -40,7 +40,7 @@ triangleFrom a b
   | otherwise = Nothing
 
 isIntSquare :: Int -> Bool
-isIntSquare x = x == (intSqrt x) ^ 2
+isIntSquare x = x == intSqrt x ^ 2
 
 intSqrt :: Int -> Int
 intSqrt = truncate . sqrt . fromIntegral

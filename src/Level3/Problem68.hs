@@ -44,16 +44,15 @@ validate (FiveGon (Line a b) (Line c d) (Line e f) (Line g h) (Line i j)) =
 fiveGonFromList :: [Integer] -> Maybe FiveGon
 fiveGonFromList [a, b, c, d, e, f, g, h, i, j] =
   if validate gon
-    then Just $ gon
+    then Just gon
     else Nothing
   where
     gon = FiveGon (Line a b) (Line c d) (Line e f) (Line g h) (Line i j)
 fiveGonFromList _ = Nothing
 
 validFiveGons :: [FiveGon]
-validFiveGons =
-  concatMap maybeToList $ map fiveGonFromList $ permutations [1 .. 10]
+validFiveGons = mapMaybe fiveGonFromList $ permutations [1 .. 10]
 
-fiveGonToString :: FiveGon -> [Char]
+fiveGonToString :: FiveGon -> String
 fiveGonToString (FiveGon (Line a b) (Line c d) (Line e f) (Line g h) (Line i j)) =
   concatMap show [a, j, b, c, b, d, e, d, f, g, f, h, i, h, j]

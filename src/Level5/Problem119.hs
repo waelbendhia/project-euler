@@ -13,7 +13,7 @@ problem =
   Problem
     119
     "Digit power sum"
-    ((filter isPowerDigitSum $ allPowersBounded 100) !! 29)
+    (filter isPowerDigitSum (allPowersBounded 100) !! 29)
 
 sumDigits :: (Show a, Integral a) => a -> a
 sumDigits = fromIntegral . sum . map digitToInt . show

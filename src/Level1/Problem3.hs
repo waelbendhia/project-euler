@@ -13,7 +13,7 @@ factors n = map (quot n) filtered ++ reverse filtered
     filtered = filter ((==) 0 . rem n) [2 .. intSqrt n]
 
 intSqrt :: Integer -> Integer
-intSqrt x = truncate $ sqrt $ (fromIntegral x :: Double)
+intSqrt x = truncate $ sqrt (fromIntegral x :: Double)
 
 isPrime :: Integer -> Bool
 isPrime a = isPrime' 2

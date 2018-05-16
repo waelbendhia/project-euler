@@ -16,7 +16,7 @@ allPairsUnder :: (Enum b, Num b) => b -> [(b, b)]
 allPairsUnder x = concatMap (\n -> map ((,) n) [1 .. n]) [1 .. x]
 
 comb :: Integral t => t -> t -> t
-comb n r = fact n `div` ((fact r) * fact (n - r))
+comb n r = fact n `div` (fact r * fact (n - r))
 
 fact :: (Num t, Ord t) => t -> t
 fact n =

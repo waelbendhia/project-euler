@@ -8,8 +8,7 @@ import qualified Data.Set as S
 import Problem
 
 problem :: Problem Integer
-problem =
-  Problem {ind = 32, name = "Pandigital products", solution = sum unusuals}
+problem = Problem 32 "Pandigital products" (sum unusuals)
 
 -- We do the extra toList.fromList step to eliminate duplicate products such
 -- as 12*483 and 42*138
@@ -18,7 +17,7 @@ unusuals =
   S.toList $ S.fromList $ map (uncurry (*)) $ filter checker possibleMultipliers
   where
     checker (m1, m2) =
-      isPandigital $read $ (show m1) ++ (show m2) ++ (show (m1 * m2))
+      isPandigital $ read $ show m1 ++ show m2 ++ show (m1 * m2)
 
 containsRepeatingDigits :: Show a => a -> Bool
 containsRepeatingDigits =
@@ -30,7 +29,7 @@ containsRepeatingDigits =
       | otherwise = S.insert c p
 
 isPandigital :: Integer -> Bool
-isPandigital n = (9 == (length $ show n)) && (not . containsRepeatingDigits) n
+isPandigital n = (9 == length (show n)) && (not . containsRepeatingDigits) n
 
 -- We know that the sum of digits has to be 9. We can check for each numbers
 -- of digits in the factors what number of digits the product is. After 

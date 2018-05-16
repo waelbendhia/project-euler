@@ -41,4 +41,4 @@ collatzLengths n dict
       if even n
         then quot n 2
         else n * 3 + 1
-    nextLen = (collatzLengths nextVal dict) M.! nextVal
+    nextLen = collatzLengths nextVal dict M.! nextVal

@@ -2,7 +2,7 @@ module Level4.Problem89Numbers
   ( numbers
   ) where
 
-numbers :: [[Char]]
+numbers :: [String]
 numbers =
   [ "MMMMDCLXXII"
   , "MMDCCCLXXXIII"

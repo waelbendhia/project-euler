@@ -5,8 +5,7 @@ module Level1.Problem18
 import Problem
 
 problem :: Problem Integer
-problem =
-  Problem {ind = 18, name = "Maximum path sum I", solution = maxFromPos (0, 0)}
+problem = Problem 18 "Maximum path sum I" (maxFromPos (0, 0))
 
 maxFromPos :: (Int, Int) -> Integer
 maxFromPos (x, y)

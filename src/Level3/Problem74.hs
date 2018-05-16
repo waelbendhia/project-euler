@@ -19,7 +19,7 @@ problem =
 
 allFactorialLengths :: Num a => M.Key -> M.IntMap a
 allFactorialLengths n =
-  foldl (factorialLength) (M.fromList [(169, 3), (871, 2), (872, 2)]) [1 .. n]
+  foldl factorialLength (M.fromList [(169, 3), (871, 2), (872, 2)]) [1 .. n]
 
 factorialLength :: Num a => M.IntMap a -> M.Key -> M.IntMap a
 factorialLength m n =

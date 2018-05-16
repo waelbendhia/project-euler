@@ -15,8 +15,9 @@ problem =
 -- turned out to be fast enough. I hope to revisit this problem at some point.
 trianglesInBound :: Integral a => a -> [((a, a), (a, a))]
 trianglesInBound b =
-  filter (uncurry formsRightTriangle) $
-  [(convert n1, convert n2) | n1 <- [1 .. hi], n2 <- [n1 + 1 .. hi]]
+  filter
+    (uncurry formsRightTriangle)
+    [(convert n1, convert n2) | n1 <- [1 .. hi], n2 <- [n1 + 1 .. hi]]
   where
     hi = (b + 1) ^ 2 - 1
     convert n = (div n (b + 1), rem n (b + 1))

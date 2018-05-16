@@ -10,7 +10,7 @@ problem =
   Problem
     102
     "Triangle containment"
-    (toInteger $ length $ filter (flip isInTriangle $ (0, 0)) triangles)
+    (toInteger $ length $ filter (`isInTriangle` (0, 0)) triangles)
 
 isInTriangle ::
      (Integral t, Ord t) => ((t, t), (t, t), (t, t)) -> (t, t) -> Bool
@@ -18,11 +18,11 @@ isInTriangle ((x1, y1), (x2, y2), (x3, y3)) (x, y) =
   all (> 0) [alpha, beta, gamma]
   where
     alpha =
-      (toRational ((y2 - y3) * (x - x3) + (x3 - x2) * (y - y3))) /
-      (toRational ((y2 - y3) * (x1 - x3) + (x3 - x2) * (y1 - y3)))
+      toRational ((y2 - y3) * (x - x3) + (x3 - x2) * (y - y3)) /
+      toRational ((y2 - y3) * (x1 - x3) + (x3 - x2) * (y1 - y3))
     beta =
-      (toRational ((y3 - y1) * (x - x3) + (x1 - x3) * (y - y3))) /
-      (toRational ((y2 - y3) * (x1 - x3) + (x3 - x2) * (y1 - y3)))
+      toRational ((y3 - y1) * (x - x3) + (x1 - x3) * (y - y3)) /
+      toRational ((y2 - y3) * (x1 - x3) + (x3 - x2) * (y1 - y3))
     gamma = 1 - alpha - beta
 
 triangleA :: ((Integer, Integer), (Integer, Integer), (Integer, Integer))

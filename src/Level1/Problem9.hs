@@ -5,9 +5,7 @@ module Level1.Problem9
 import Problem
 
 problem :: Problem Integer
-problem =
-  Problem
-  {ind = 9, name = "Special Pythagorean triplet", solution = solver 1000}
+problem = Problem 9 "Special Pythagorean triplet" (solver 1000)
 
 solver :: Integer -> Integer
 solver t = a * b * c
@@ -21,7 +19,7 @@ wholeRoot :: Integer -> Integer
 wholeRoot x = truncate $ sqrt $ fromIntegral x
 
 perfectSquare :: Integer -> Bool
-perfectSquare x = x == (wholeRoot (x ^ 2))
+perfectSquare x = x == wholeRoot (x ^ 2)
 
 isTriplet :: (Integer, Integer) -> Bool
 isTriplet (a, b) = a < b && perfectSquare c && (a ^ 2 + b ^ 2 == c ^ 2) && a < b

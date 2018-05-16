@@ -41,7 +41,7 @@ makeChainFromBounded bound x =
     (x, M.empty)
 
 isAmicableChain :: [M.Key] -> Bool
-isAmicableChain l = length l > 0 && head l == (sumDivisors $ last l)
+isAmicableChain l = not (null l) && head l == sumDivisors (last l)
 
 allChainsBounded :: Int -> [[Int]]
-allChainsBounded bound = map (makeChainFromBounded $ bound) [0 .. bound]
+allChainsBounded bound = map (makeChainFromBounded bound) [0 .. bound]

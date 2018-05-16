@@ -15,7 +15,7 @@ problem =
     (toInteger $ (+) 1 $ fromMaybe 0 $ findIndex (> (10 ^ 10)) fnPrimes)
 
 fnPrimes :: [Integer]
-fnPrimes = map (uncurry fn) $ zip primes [1 ..]
+fnPrimes = zipWith fn primes [1 ..]
 
 -- Using what we learned in problem 120 we can simplify our formula to this:
 fn :: Integral t => t -> t -> t

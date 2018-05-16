@@ -3,6 +3,7 @@ module Level2.Problem33
   ) where
 
 import Data.List
+import Data.Maybe
 import Problem
 
 problem :: Problem Integer
@@ -34,14 +35,14 @@ possiblePairs =
   filter (uncurry canSimplify) $
   filter (uncurry viablePair) $ concatMap (\a -> map ((,) a) (over a)) range
   where
-    range = filter ((/=) 0 . (flip rem) 10) [11 .. 99]
+    range = filter ((/=) 0 . flip rem 10) [11 .. 99]
     over a = dropWhile (<= a) range
 
 viablePair :: (Show a, Num a, Ord a) => a -> a -> Bool
 viablePair a b = a >= 10 && b >= 10 && a /= b && shareDigit a b
 
 shareDigit :: (Show a1, Show a) => a1 -> a -> Bool
-shareDigit a b = sharedDigit a b /= Nothing
+shareDigit a b = isJust $ sharedDigit a b
 
 sharedDigit :: (Show a, Show a1) => a1 -> a -> Maybe Char
 sharedDigit a b =
@@ -57,7 +58,7 @@ removeDigit :: (Show a, Read c) => Char -> a -> c
 removeDigit d = read . delete d . show
 
 contains :: (Eq a, Foldable t) => t a -> a -> Bool
-contains l a = any (== a) l
+contains l a = a `elem` l
 
 canSimplify :: Integral a => a -> a -> Bool
 canSimplify a b = gcd a b > 1
@@ -71,7 +72,7 @@ cancelledDigit :: (Integral a, Show a) => (a, a) -> (a, a) -> Bool
 cancelledDigit (a, b) (a', b') =
   shareDigit a a' &&
   shareDigit b b' &&
-  shareDigit a b && (not $ shareDigit a' b') && compareFraction (a, b) (a', b')
+  shareDigit a b && not (shareDigit a' b') && compareFraction (a, b) (a', b')
 
 compareFraction :: Integral a => (a, a) -> (a, a) -> Bool
 compareFraction (a, b) (a', b') = div a g == div a' g' && div b g == div b' g'

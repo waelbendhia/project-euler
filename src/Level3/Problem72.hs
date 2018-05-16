@@ -20,4 +20,4 @@ uniqueFractionsUnder n = phi n + uniqueFractionsUnder (n - 1)
 phi :: Integral b => b -> b
 phi = product . map f . group . primeFactors
   where
-    f l@(p:_) = p ^ (length l) - p ^ (length l - 1)
+    f l@(p:_) = p ^ length l - p ^ (length l - 1)

@@ -16,7 +16,7 @@ isSumOfAbundantNumbers :: Integer -> Bool
 isSumOfAbundantNumbers x = check 1
   where
     check n
-      | n > (quot x 2) = False
+      | n > quot x 2 = False
       | S.member n abundantNumbers && S.member (x - n) abundantNumbers = True
       | otherwise = check (n + 1)
 
@@ -28,9 +28,9 @@ divisors n =
   filter (/= n) $
   1 :
   filtered ++
-  (map (quot n) $ filter ((/=) (sqrt $ fromIntegral n) . fromIntegral) filtered)
+  map (quot n) (filter ((/= sqrt (fromIntegral n)) . fromIntegral) filtered)
   where
     filtered = filter ((==) 0 . rem n) [2 .. truncate $ sqrt $ fromIntegral n]
 
 isAbundant :: Integer -> Bool
-isAbundant n = (sum $ divisors n) > n
+isAbundant n = sum (divisors n) > n

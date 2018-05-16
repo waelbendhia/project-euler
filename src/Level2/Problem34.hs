@@ -15,7 +15,7 @@ upperBound :: Int
 upperBound = loop 1 * factorial 9
   where
     loop n
-      | (length $show $ n * factorial 9) == n = n
+      | length (show $ n * factorial 9) == n = n
       | otherwise = loop (n + 1)
 
 check :: Int -> Bool

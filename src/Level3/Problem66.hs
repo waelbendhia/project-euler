@@ -21,7 +21,7 @@ minimalDiophantineSolutionsInRange ::
      Foldable t => t Integer -> [(Integer, Integer)]
 minimalDiophantineSolutionsInRange =
   concatMap
-    (\d -> maybeToList $ minimalDiophantineSolution d >>= Just . ((,) d) . fst)
+    (\d -> maybeToList $ minimalDiophantineSolution d >>= Just . (,) d . fst)
 
 minimalDiophantineSolution :: Integer -> Maybe (Integer, Integer)
 minimalDiophantineSolution d =
@@ -37,20 +37,20 @@ maybeToList Nothing = []
 maybeToList (Just x) = [x]
 
 isSquare :: Integer -> Bool
-isSquare x = (wholeRoot x) ^ 2 == x
+isSquare x = wholeRoot x ^ 2 == x
 
 wholeRoot :: Integer -> Integer
 wholeRoot = truncate . sqrt . fromIntegral
 
 fractionalExpansion :: Integer -> (Integer, [Integer])
 fractionalExpansion x =
-  if (wholeRoot x) ^ 2 == x
+  if wholeRoot x ^ 2 == x
     then (x, [])
     else (head expansion, tail expansion)
   where
     expansion = map trd $ reverse $ helper [] Nothing
     helper [] _ = helper [(0, 1, wholeRoot x)] Nothing
-    helper (l@((m, d, a):_)) first =
+    helper l@((m, d, a):_) first =
       if Just (mn, dn) == first
         then l
         else helper (newTerm : l) stopCondition
@@ -80,6 +80,6 @@ addToFraction :: Integral t => t -> (t, t) -> (t, t)
 addToFraction t (n, d) = simplify (t * d + n, d)
 
 endlessConvergenceOfRoot :: Integer -> [(Integer, Integer)]
-endlessConvergenceOfRoot n = map toFraction $ inits $ (i : cycle l)
+endlessConvergenceOfRoot n = map toFraction $ inits (i : cycle l)
   where
     (i, l) = fractionalExpansion n

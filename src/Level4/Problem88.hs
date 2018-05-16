@@ -8,9 +8,7 @@ import Data.List
 import Problem
 
 problem :: Problem Integer
-problem =
-  Problem
-  {ind = 88, name = "Product-sum numbers", solution = sumMinProdSumUnder 12000}
+problem = Problem 88 "Product-sum numbers" (sumMinProdSumUnder 12000)
 
 -- So this took some thinking. The first part of the problem is how to provide
 -- bounds to the search space. A lower bound is evident, the lowest number is k

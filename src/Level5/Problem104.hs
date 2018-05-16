@@ -20,12 +20,12 @@ fibonacciSequence =
 
 containsRepeatingDigits :: (Show a, Integral a) => a -> Bool
 containsRepeatingDigits x =
-  (length $ nub $ map digitToInt $ show x) /= (length $ show x)
+  length (nub $ map digitToInt $ show x) /= length (show x)
 
 isPandigital :: (Show a, Integral a) => a -> Bool
 isPandigital n =
-  (9 == (length $ show n)) &&
-  (not $ containsRepeatingDigits n) && (not $ any (== '0') $show n)
+  (9 == length (show n)) &&
+  not (containsRepeatingDigits n) && notElem '0' (show n)
 
 problemCheck :: (Show a, Integral a) => a -> Bool
 problemCheck x = isPandigital last9 && isPandigital first9

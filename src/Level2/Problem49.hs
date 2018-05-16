@@ -14,7 +14,7 @@ problem =
     "Prime permutations"
     (read $
      concatMap show $
-     head $ filter (not . any (== 1487)) $ arithmeticSharedDigitNPrimes 4)
+     head $ filter (notElem 1487) $ arithmeticSharedDigitNPrimes 4)
 
 arithmeticSharedDigitNPrimes :: (Show a, Integral a, Integral b) => b -> [[a]]
 arithmeticSharedDigitNPrimes n =
@@ -30,19 +30,15 @@ groupedBySharedDigitsNDigitalPrimes ::
 groupedBySharedDigitsNDigitalPrimes n =
   remConsDup $
   sort $
-  map sort $
-  filter ((> 0) . length) $ nonConsGroupBy shareDigits $ nDigitalPrimes n
+  map sort $ filter (not . null) $ nonConsGroupBy shareDigits $ nDigitalPrimes n
 
 arithmeticSeries :: (Num a, Eq a) => [a] -> Bool
-arithmeticSeries l = helper Nothing l
+arithmeticSeries = helper Nothing
   where
     helper d [] = True
     helper d [_] = True
-    helper (Nothing) (x1:x2:xs) = helper (Just (x2 - x1)) (x2 : xs)
-    helper (Just d) (x1:x2:xs) =
-      if d == (x2 - x1)
-        then helper (Just d) (x2 : xs)
-        else False
+    helper Nothing (x1:x2:xs) = helper (Just (x2 - x1)) (x2 : xs)
+    helper (Just d) (x1:x2:xs) = d == (x2 - x1) && helper (Just d) (x2 : xs)
 
 nDigitalPrimes :: (Integral a, Integral b) => b -> [a]
 nDigitalPrimes n = takeWhile (< 10 ^ n) $ dropWhile (< 10 ^ (n - 1)) primes
@@ -59,7 +55,7 @@ remConsDup :: Eq a => [a] -> [a]
 remConsDup =
   foldl
     (\p c ->
-       if length p > 0 && head p == c
+       if not (null p) && head p == c
          then p
          else c : p)
     []

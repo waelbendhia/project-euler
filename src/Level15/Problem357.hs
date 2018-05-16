@@ -31,8 +31,5 @@ pgiUnder b = (:) 1 $ filter checker $ map (+ 2) [0,4 .. b]
       where
         helper d
           | d * d > n = True
-          | n `rem` d == 0 =
-            if isPrime (d + n `quot` d)
-              then helper (d + 1)
-              else False
+          | n `rem` d == 0 = isPrime (d + n `quot` d) && helper (d + 1)
           | otherwise = helper (d + 1)

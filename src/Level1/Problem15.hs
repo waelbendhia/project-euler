@@ -5,7 +5,7 @@ module Level1.Problem15
 import Problem
 
 problem :: Problem Integer
-problem = Problem {ind = 15, name = "Lattice paths", solution = solver 20}
+problem = Problem 15 "Lattice paths" (solver 20)
 
 -- Some explanation:
 -- A path that traverses a lattice of N*N size is a path of length 2N in which
@@ -13,6 +13,6 @@ problem = Problem {ind = 15, name = "Lattice paths", solution = solver 20}
 -- So the problem reduces to calculating N choose 2N or the binomanial
 -- coefficient of N and 2N.
 solver :: Integer -> Integer
-solver n = truncate $ foldl (*) 1 $ map f [1 .. toRational n]
+solver n = truncate $ product $ map f [1 .. toRational n]
   where
-    f i = ((2 * (fromIntegral n) + 1 - i) / i) :: Rational
+    f i = ((2 * fromIntegral n + 1 - i) / i) :: Rational

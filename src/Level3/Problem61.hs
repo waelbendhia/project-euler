@@ -14,19 +14,19 @@ solve :: [[Integer]]
 solve = do
   firstSet <- numbers
   firstNumber <- firstSet
-  let remainingSets1 = filter (not . any (== firstNumber)) numbers
+  let remainingSets1 = filter (notElem firstNumber) numbers
   secondSet <- remainingSets1
   secondNumber <- filter (cyclic firstNumber) secondSet
-  let remainingSets2 = filter (not . any (== secondNumber)) remainingSets1
+  let remainingSets2 = filter (notElem secondNumber) remainingSets1
   thirdSet <- remainingSets2
   thirdNumber <- filter (cyclic secondNumber) thirdSet
-  let remainingSets3 = filter (not . any (== thirdNumber)) remainingSets2
+  let remainingSets3 = filter (notElem thirdNumber) remainingSets2
   fourthSet <- remainingSets3
   fourthNumber <- filter (cyclic thirdNumber) fourthSet
-  let remainingSets4 = filter (not . any (== fourthNumber)) remainingSets3
+  let remainingSets4 = filter (notElem fourthNumber) remainingSets3
   fifthSet <- remainingSets4
   fifthNumber <- filter (cyclic fourthNumber) fifthSet
-  let remainingSets5 = filter (not . any (== fifthNumber)) remainingSets4
+  let remainingSets5 = filter (notElem fifthNumber) remainingSets4
   sixthSet <- remainingSets5
   sixthNumber <-
     filter (\n -> cyclic fifthNumber n && cyclic n firstNumber) sixthSet

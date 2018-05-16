@@ -17,15 +17,15 @@ multiplesUntilLength :: Integer -> [Integer]
 multiplesUntilLength x = take' [] $ map (* x) [1 ..]
   where
     take' l l'
-      | (sum $ map numDigits l) == 9 = l
-      | (sum $ map numDigits l) > 9 = []
+      | sum (map numDigits l) == 9 = l
+      | sum (map numDigits l) > 9 = []
       | otherwise = take' (l ++ [head l']) (tail l')
 
 producedNumber :: Integer -> Integer
 producedNumber = seriesNum . multiplesUntilLength
 
 seriesNum :: [Integer] -> Integer
-seriesNum = read . concat . map show
+seriesNum = read . concatMap show
 
 numDigits :: Integer -> Integer
 numDigits = (+ 1) . truncate . logBase 10 . fromIntegral
@@ -47,5 +47,5 @@ containsRepeatingDigits =
 
 producesPandigitalSeries :: Integer -> Bool
 producesPandigitalSeries n
-  | (length $ multiplesUntilLength n) == 0 = False
+  | null (multiplesUntilLength n) = False
   | otherwise = isPandigitalSeries $ multiplesUntilLength n

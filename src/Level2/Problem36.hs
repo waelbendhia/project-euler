@@ -21,10 +21,8 @@ isPalindromeNumber = isPalindrome . show
 
 isPalindrome :: Eq a => [a] -> Bool
 isPalindrome x =
-  if length x <= 1
-    then True
-    else last x == head x && isPalindrome (tail $ init x)
+  length x <= 1 || (last x == head x && isPalindrome (tail $ init x))
 
-toBinary :: Int -> [Char]
+toBinary :: Int -> String
 toBinary 0 = []
 toBinary n = toBinary (quot n 2) ++ [intToDigit $ rem n 2]

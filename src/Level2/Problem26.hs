@@ -25,11 +25,11 @@ cycleLen n =
     else length $ cycle n [1]
   where
     cycle d c =
-      if any (== newRem) c
-        then newRem : (takeWhile (/= newRem) c)
+      if newRem `elem` c
+        then newRem : takeWhile (/= newRem) c
         else cycle d (newRem : c)
       where
-        newRem = rem ((head c) * 10) d
+        newRem = rem (head c * 10) d
 
 isTerminating :: Integral a => a -> Bool
 isTerminating n

@@ -16,7 +16,7 @@ bfs :: Array Int (Array Int Integer) -> Integer
 bfs arr = helper [((0, 0), arr !!? (0, 0))] M.empty
   where
     atCorner (x, y) = x == snd (bounds arr) && y == snd (bounds (arr ! x))
-    helper [] _ = (10 ^ 200)
+    helper [] _ = 10 ^ 200
     helper ((c, v):q) visited =
       if atCorner c
         then v

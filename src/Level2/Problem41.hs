@@ -3,14 +3,13 @@ module Level2.Problem41
   ) where
 
 import Data.List
+import Data.Maybe
 import Data.Numbers.Primes
 
 import Problem
 
 problem :: Problem Integer
-problem =
-  Problem
-  {ind = 41, name = "Pandigital prime", solution = biggestPandigitalPrime}
+problem = Problem 41 "Pandigital prime" biggestPandigitalPrime
 
 biggestPandigitalPrime :: Integer
 biggestPandigitalPrime = helper 9
@@ -18,9 +17,7 @@ biggestPandigitalPrime = helper 9
     helper n
       | n < 1 = 0
       | otherwise =
-        case find isPrime $ generateNPandigital n of
-          Nothing -> helper (n - 1)
-          Just x -> x
+        fromMaybe (helper $ n - 1) $ find isPrime $ generateNPandigital n
 
 numDigits :: Show a => a -> Int
 numDigits = length . show
@@ -35,6 +32,6 @@ generateNPandigital n
     genPandigital l =
       concatMap
         (\x ->
-           map (\y -> x * (10 ^ (numDigits y)) + y) $
+           map (\y -> x * (10 ^ numDigits y) + y) $
            genPandigital $ filter (/= x) l)
         l

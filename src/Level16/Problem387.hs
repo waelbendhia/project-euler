@@ -26,7 +26,7 @@ rightTruncatableHarshads :: (Num t, Eq t) => t -> [Integer]
 rightTruncatableHarshads 1 = [0 .. 9]
 rightTruncatableHarshads digits = do
   c <- rightTruncatableHarshads (digits - 1)
-  c * 10 : (filter isHarshad $ map (+ c * 10) [1 .. 9])
+  c * 10 : filter isHarshad (map (+ c * 10) [1 .. 9])
 
 strongRightTruncatableHarshads :: (Eq t, Num t) => t -> [Integer]
 strongRightTruncatableHarshads =

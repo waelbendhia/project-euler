@@ -11,23 +11,23 @@ problem :: Problem Integer
 problem =
   Problem 59 "XOR decryption" (toInteger $ sum $ map ord $ bruteForce message)
 
-keys :: [[Char]]
+keys :: [String]
 keys = [[a, b, c] | a <- ['a' .. 'z'], b <- ['a' .. 'z'], c <- ['a' .. 'z']]
 
-bruteForce :: [Char] -> [Char]
+bruteForce :: String -> String
 bruteForce msg = helper keys
   where
     helper (k:ks)
       -- if any word is the (the most common word in english) then we assume
       -- we have decrypted the message and return the crypt
      =
-      if any (== "the") $ words decrypted
+      if elem "the" $ words decrypted
         then decrypted
         else helper ks
       where
         decrypted = decrypt k msg
 
-decrypt :: [Char] -> [Char] -> [Char]
+decrypt :: String -> String -> String
 decrypt key = map chr . zipWith xor (map ord $ cycle key) . map ord
 
 message =

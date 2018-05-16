@@ -59,10 +59,8 @@ pentagonalTerm p =
 
 intSqrt :: Integer -> Maybe Integer
 intSqrt n =
-  if n < 0
-    then Nothing
-    else if root ^ 2 == n
-           then Just root
-           else Nothing
+  if n >= 0 && root ^ 2 == n
+    then Just root
+    else Nothing
   where
     root = truncate $ sqrt $ fromIntegral n

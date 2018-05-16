@@ -13,11 +13,11 @@ problem :: Problem Integer
 problem = Problem 50 "Consecutive prime sum" (longestPrimeSumUnder 1000000)
 
 longestPrimeSumUnder :: Integral t => t -> t
-longestPrimeSumUnder n =
-  fromMaybe 0 $ fmap sumByInd $ find eval $ filter eval indexPairs
+longestPrimeSumUnder n = maybe 0 sumByInd (find eval $ filter eval indexPairs)
+  -- fromMaybe 0 $ fmap sumByInd $ find eval $ filter eval indexPairs
   where
-    eval (a, b) = sumByInd (a, b) < n && (isPrime $ sumByInd (a, b))
-    sumByInd (a, b) = (sumP' V.! b - sumP' V.! a)
+    eval (a, b) = sumByInd (a, b) < n && isPrime (sumByInd (a, b))
+    sumByInd (a, b) = sumP' V.! b - sumP' V.! a
     indexPairs = do
       r <- [length sumP',length sumP' - 1 .. 2]
       map (\i -> (i, i + r)) [0 .. length sumP' - r - 1]

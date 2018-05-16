@@ -32,7 +32,7 @@ totalThrows :: Integral t => [(a, t)] -> t
 totalThrows = sum . map snd
 
 toProbabilities :: (Integral t, Fractional t1) => [(t, t)] -> [(t, t1)]
-toProbabilities l = map (\(v, p) -> (v, (fromIntegral p) / total)) l
+toProbabilities l = map (\(v, p) -> (v, fromIntegral p / total)) l
   where
     total = fromIntegral $ totalThrows l
 
@@ -45,4 +45,4 @@ winProbabilitySingle (v, p) ps =
   sum $ map ((* p) . snd) $ filter ((< v) . fst) ps
 
 winProbability :: (Ord a1, Num a) => [(a1, a)] -> [(a1, a)] -> a
-winProbability ps ps' = sum $ map (\p -> winProbabilitySingle p ps') ps
+winProbability ps ps' = sum $ map (`winProbabilitySingle` ps') ps
