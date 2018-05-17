@@ -137,6 +137,8 @@ executable project-euler
                        Level4.Problem93
                        Level4.Problem94
                        Level4.Problem95
+                       Level4.Problem96
+                       Level4.Problem96Puzzles
                        Level4.Problem97
                        Level4.Problem99
                        Level4.Problem99Numbers
@@ -175,6 +177,7 @@ executable project-euler
                        Level16.Solutions
                        Level20.Problem493
                        Level20.Problem500
+                       Level20.Problem504
                        Level20.Solutions
                        Level22.Problem549
                        Level22.Solutions
