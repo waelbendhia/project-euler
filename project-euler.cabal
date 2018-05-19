@@ -140,10 +140,12 @@ executable project-euler
                        Level4.Problem96
                        Level4.Problem96Puzzles
                        Level4.Problem97
+                       Level4.Problem98
+                       Level4.Problem98Words
                        Level4.Problem99
                        Level4.Problem99Numbers
+                       Level4.Problem100
                        Level4.Solutions
-                       Level5.Problem100
                        Level5.Problem102
                        Level5.Problem102Triangles
                        Level5.Problem104

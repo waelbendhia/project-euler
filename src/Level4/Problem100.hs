@@ -1,4 +1,4 @@
-module Level5.Problem100
+module Level4.Problem100
   ( problem
   ) where
 

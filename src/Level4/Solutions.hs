@@ -2,6 +2,7 @@ module Level4.Solutions
   ( solutions
   ) where
 
+import qualified Level4.Problem100 as P100
 import qualified Level4.Problem76 as P76
 import qualified Level4.Problem77 as P77
 import qualified Level4.Problem78 as P78
@@ -24,6 +25,7 @@ import qualified Level4.Problem94 as P94
 import qualified Level4.Problem95 as P95
 import qualified Level4.Problem96 as P96
 import qualified Level4.Problem97 as P97
+import qualified Level4.Problem98 as P98
 import qualified Level4.Problem99 as P99
 
 import Problem
@@ -52,5 +54,7 @@ solutions =
   , P95.problem
   , P96.problem
   , P97.problem
+  , P98.problem
   , P99.problem
+  , P100.problem
   ]
