@@ -7,6 +7,7 @@ import qualified Level13.Solutions as L13
 import qualified Level14.Solutions as L14
 import qualified Level15.Solutions as L15
 import qualified Level16.Solutions as L16
+import qualified Level17.Solutions as L17
 import qualified Level2.Solutions as L2
 import qualified Level20.Solutions as L20
 import qualified Level22.Solutions as L22
@@ -19,17 +20,16 @@ import qualified Level9.Solutions as L9
 import Problem
 
 getProblem :: Int -> Problem Integer
-getProblem i =
-  if length matching == 0
-    then Problem i "Not solved yet" 0
-    else if length matching > 1
-           then error ("Found multiple solutions with number: " ++ (show i))
-           else head $ matching
+getProblem i
+  | null matching = Problem i "Not solved yet" 0
+  | length matching > 1 =
+    error ("Found multiple solutions with number: " ++ show i)
+  | otherwise = head matching
   where
     matching =
       filter ((== i) . ind) $
       concat
-        [     L1.solutions
+        [ L1.solutions
         , L2.solutions
         , L3.solutions
         , L4.solutions
@@ -41,6 +41,7 @@ getProblem i =
         , L14.solutions
         , L15.solutions
         , L16.solutions
+        , L17.solutions
         , L20.solutions
         , L22.solutions
         ]

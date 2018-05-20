@@ -168,6 +168,7 @@ executable project-euler
                        Level9.Solutions
                        Level13.Problem301
                        Level13.Problem315
+                       Level13.Problem323
                        Level13.Solutions
                        Level14.Problem345
                        Level14.Problem346
@@ -178,6 +179,8 @@ executable project-euler
                        Level16.Problem381
                        Level16.Problem387
                        Level16.Solutions
+                       Level17.Problem407
+                       Level17.Solutions
                        Level20.Problem493
                        Level20.Problem500
                        Level20.Problem504
