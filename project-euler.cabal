@@ -167,6 +167,7 @@ executable project-euler
                        Level9.Problem206
                        Level9.Solutions
                        Level13.Problem301
+                       Level13.Problem315
                        Level13.Solutions
                        Level14.Problem345
                        Level14.Problem346

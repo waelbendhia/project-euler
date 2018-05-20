@@ -29,7 +29,7 @@ getProblem i =
     matching =
       filter ((== i) . ind) $
       concat
-        [ L1.solutions
+        [     L1.solutions
         , L2.solutions
         , L3.solutions
         , L4.solutions
