@@ -17,8 +17,8 @@ import Problem
 -- googling prime factorization of factorials leads us to Legendre's theorem
 -- which states:
 -- For any prime number p and any positive integer n, let Vp(n) be the exponent
--- of the largest power of p that divides n (that is, the p-adic valuation of
--- n). Then:
+-- of the largest power of p that divides n (that is, the p-adic valuation
+-- of n). Then:
 -- Vp(n!) = sum from i to infinity of floor (n/p^i).
 -- And there we go, it's all done. The final algorithm runs in abouts 60
 -- seconds. Again this may be worth revisiting to try to weed out some

@@ -15,7 +15,7 @@ import Problem
 
 -- Algorithm is basically compose a linear program describing the matrix and
 -- solve it using GLPK. Easy-peasy.
--- On a whole I like this program because I get to use something I learned from
+-- On a whole I like this problem because I get to use something I learned from
 -- school and I get to do monad things and unsafe IO.
 -- Anyway the integer linear program is:
 -- Each cell is its own var xij where i is the column index and j is the row

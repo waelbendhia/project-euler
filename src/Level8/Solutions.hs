@@ -1,4 +1,4 @@
-module Level7.Solutions
+module Level8.Solutions
   ( solutions
   ) where
 

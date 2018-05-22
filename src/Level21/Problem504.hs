@@ -1,4 +1,4 @@
-module Level20.Problem504
+module Level21.Problem504
   ( problem
   ) where
 

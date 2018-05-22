@@ -11,12 +11,13 @@ import qualified Level17.Solutions as L17
 import qualified Level18.Solutions as L18
 import qualified Level2.Solutions as L2
 import qualified Level20.Solutions as L20
+import qualified Level21.Solutions as L21
 import qualified Level22.Solutions as L22
 import qualified Level3.Solutions as L3
 import qualified Level4.Solutions as L4
 import qualified Level5.Solutions as L5
 import qualified Level6.Solutions as L6
-import qualified Level7.Solutions as L7
+import qualified Level8.Solutions as L8
 import qualified Level9.Solutions as L9
 import Problem
 
@@ -36,7 +37,7 @@ getProblem i
         , L4.solutions
         , L5.solutions
         , L6.solutions
-        , L7.solutions
+        , L8.solutions
         , L9.solutions
         , L13.solutions
         , L14.solutions
@@ -45,5 +46,6 @@ getProblem i
         , L17.solutions
         , L18.solutions
         , L20.solutions
+        , L21.solutions
         , L22.solutions
         ]

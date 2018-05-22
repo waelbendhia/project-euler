@@ -9,14 +9,14 @@ import Text.Read
 main :: IO ()
 main = do
   putStrLn $
-    "\nWelcome to this little CLI that prints out solutions to Project Euler" ++
-    " problems\n"
-  putStrLn $
-    "If a problem isn't solved it'll tell you so, if it doesn't then " ++
-    "eventually it will output the result.\n"
-  putStrLn $
-    "Some of these are pretty slow and may take a while (up to 3 " ++
-    "minutes in the worst case) to terminate.\n"
+    concat
+      [ "\nWelcome to this little CLI that prints out solutions to Project "
+      , "Euler problems\n"
+      , "\nIf a problem isn't solved it'll tell you so, if it doesn't then "
+      , "eventually it will output the result.\n"
+      , "\nSome of these are pretty slow and may take a while (up to 3 minutes "
+      , "in the worst case) to terminate.\n"
+      ]
   problemSelection
 
 problemSelection :: IO ()
