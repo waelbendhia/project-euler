@@ -1,6 +1,6 @@
 module Main where
 
-import Data.Maybe
+import Control.Monad
 import Problem
 import Solutions
 import System.TimeIt
@@ -21,9 +21,10 @@ main = do
 
 problemSelection :: IO ()
 problemSelection = do
-  num <- promptInt "\nSelect a problem"
-  timeIt $ putStrLn $ prettyPrint $ getProblem num
-  problemSelection
+  num <- promptInt "\nSelect a problem or 0 to quit"
+  when (num /= 0) $ do
+    timeIt $ putStrLn $ prettyPrint $ getProblem num
+    problemSelection
 
 always :: t1 -> t -> t1
 always a _ = a
@@ -36,5 +37,4 @@ promptLine prompt = putStrLn prompt >>= always getLine
 
 promptInt :: String -> IO Int
 promptInt prompt =
-  promptLine prompt >>=
-  fromMaybe (retry $ promptInt prompt) . fmap return . readMaybe
+  promptLine prompt >>= (maybe (retry $ promptInt prompt) return . readMaybe)
