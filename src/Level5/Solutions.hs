@@ -4,6 +4,7 @@ module Level5.Solutions
 
 import qualified Level5.Problem102 as P102
 import qualified Level5.Problem104 as P104
+import qualified Level5.Problem108 as P108
 import qualified Level5.Problem112 as P112
 import qualified Level5.Problem114 as P114
 import qualified Level5.Problem115 as P115
@@ -21,6 +22,7 @@ solutions :: [Problem Integer]
 solutions =
   [ P102.problem
   , P104.problem
+  , P108.problem
   , P112.problem
   , P114.problem
   , P115.problem

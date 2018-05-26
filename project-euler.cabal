@@ -150,6 +150,7 @@ executable project-euler
                        Level5.Problem102
                        Level5.Problem102Triangles
                        Level5.Problem104
+                       Level5.Problem108
                        Level5.Problem112
                        Level5.Problem114
                        Level5.Problem115
@@ -189,6 +190,7 @@ executable project-euler
                        Level20.Problem500
                        Level20.Solutions
                        Level21.Problem504
+                       Level21.Problem518
                        Level21.Solutions
                        Level22.Problem549
                        Level22.Solutions

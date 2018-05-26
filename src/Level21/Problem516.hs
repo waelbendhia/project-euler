@@ -39,9 +39,10 @@ hammingTotientPrimesUnder b = filter isPrime $ (+ 1) <$> hammings
     hammings = generateHammingNumbersUnder b
 
 hammingTotientNumbersUnder b = do
-  n <- hammings
-  filter (< b) $ (* n) <$> prods
+  return 0
   where
+    helper [] = []
+    helper (n:ns) = map (* n) hammings ++ helper (ns ++ map (n *) ns)
     hammings = generateHammingNumbersUnder b
     htPrimes = filter (\x -> isPrime x && x > 5) $ (+ 1) <$> hammings
     prods = allProducts htPrimes b
