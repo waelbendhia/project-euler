@@ -1,5 +1,5 @@
 module Level21.Problem516
-  (
+  ( problem
   ) where
 
 import Data.List

@@ -6,6 +6,7 @@ import qualified Level5.Problem102 as P102
 import qualified Level5.Problem104 as P104
 import qualified Level5.Problem108 as P108
 import qualified Level5.Problem112 as P112
+import qualified Level5.Problem113 as P113
 import qualified Level5.Problem114 as P114
 import qualified Level5.Problem115 as P115
 import qualified Level5.Problem116 as P116
@@ -24,6 +25,7 @@ solutions =
   , P104.problem
   , P108.problem
   , P112.problem
+  , P113.problem
   , P114.problem
   , P115.problem
   , P116.problem
